@@ -539,6 +539,7 @@ class ComposerStaticInit4b1780456c0a340488360871da6ef7f2
         'App\\Models\\Guru' => __DIR__ . '/../..' . '/app/Models/Guru.php',
         'App\\Models\\Kelas' => __DIR__ . '/../..' . '/app/Models/Kelas.php',
         'App\\Models\\Murid' => __DIR__ . '/../..' . '/app/Models/Murid.php',
+        'App\\Models\\Ppdb' => __DIR__ . '/../..' . '/app/Models/Ppdb.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

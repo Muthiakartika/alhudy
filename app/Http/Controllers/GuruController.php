@@ -46,7 +46,7 @@ class GuruController extends Controller
             'tglLahir' => 'required',
             'nipy' => 'required',
             'noHp' => 'required',
-            'foto' => 'required|image|file|max:1024'
+            'foto' => 'required|image|file|max:2048'
         ]);
 
         //Validasi jika ada foto yang dimasukkan
@@ -155,5 +155,14 @@ class GuruController extends Controller
         $guru->delete();
         return redirect()->route('guru.index')
         ->with('success','Data guru berhasil dihapus');
+    }
+
+    /**
+     * Menampilkan data pengajar di halaman depan
+     */
+    public function showData()
+    {
+        $guru = Guru::all();
+        return view('tentangalhudy', compact('guru'));
     }
 }

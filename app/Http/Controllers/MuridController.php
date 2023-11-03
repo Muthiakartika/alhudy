@@ -44,9 +44,19 @@ class MuridController extends Controller
             'nama' => 'required',
             'kelasId' => 'required',
             'nisn' => 'required',
+            'tempat' => 'required',
+            'tglLahir' => 'required',
+            'umur' => 'required',
+            'alamat' => 'required',
+            'noHp' => 'required',
+            'status' => 'required',
+            'gender' => 'required',
+            'kebKhusus' => 'required',
+            'disabilitas' => 'required',
+            'kip' => '',
             'namaAyah' => 'required',
             'namaIbu' => 'required',
-            'noHp' => 'required'
+            'namaWali' => ''
         ]);
 
         Murid::create($request->all());
@@ -88,12 +98,22 @@ class MuridController extends Controller
     public function update(Request $request, Murid $murid)
     {
         $request->validate([
-            'nama' => 'required',
-            'kelasId' => 'required',
-            'nisn' => 'required',
-            'namaAyah' => 'required',
-            'namaIbu' => 'required',
-            'noHp' => 'required'
+            'nama' => '',
+            'kelasId' => '',
+            'nisn' => '',
+            'tempat' => '',
+            'tglLahir' => '',
+            'umur' => '',
+            'alamat' => '',
+            'noHp' => '',
+            'status' => '',
+            'gender' => '',
+            'kebKhusus' => '',
+            'disabilitas' => '',
+            'kip' => '',
+            'namaAyah' => '',
+            'namaIbu' => '',
+            'namaWali' => ''
         ]);
 
         $murid->update($request->all());

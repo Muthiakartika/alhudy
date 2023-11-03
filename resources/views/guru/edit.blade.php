@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label for="namaGuru">Nama Guru</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror"
-                        id="namaGuru" name="nama" placeholder="Nama Guru" value="{{$guru->nama}}">
+                        id="namaGuru" name="nama" value="{{$guru->nama}}">
 
                         @error('nama')
                             <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
                         <input type="text" class="form-control @error('jabatan') is-invalid @enderror"
-                        id="jabatan" name="jabatan" placeholder="Jabatan" value="{{$guru->nama}}">
+                        id="jabatan" name="jabatan" value="{{$guru->jabatan}}">
 
                         @error('jabatan')
                             <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label for="jabatan">Tempat Lahir</label>
                         <input type="text" class="form-control @error('tempat') is-invalid @enderror"
-                        id="tempat" name="tempat" placeholder="Tempat Lahir" value="{{$guru->tempat}}">
+                        id="tempat" name="tempat" value="{{$guru->tempat}}">
 
                         @error('tempat')
                             <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="jabatan">Tanggal Lahir</label>
                         <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
-                        id="tglLahir" name="tglLahir" placeholder="Tanggal Lahir" value="{{$guru->tglLahir}}">
+                        id="tglLahir" name="tglLahir" value="{{$guru->tglLahir}}">
 
                         @error('tglLahir')
                             <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
                     <div class="form-group">
                         <label for="jabatan">NIPY</label>
                         <input type="number" class="form-control @error('nipy') is-invalid @enderror"
-                        id="niyp" name="nipy" placeholder="NIPY" value="{{$guru->nipy}}">
+                        id="niyp" name="nipy" value="{{$guru->nipy}}">
 
                         @error('nipy')
                             <span class="invalid-feedback" role="alert">
@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <label for="jabatan">No Handphone</label>
                         <input type="number" minlength="10" maxlength="12" class="form-control @error('noHp') is-invalid @enderror"
-                        id="noHp" name="noHp" placeholder="No Handphone" value="{{$guru->noHp}}">
+                        id="noHp" name="noHp" value="{{$guru->noHp}}">
 
                         @error('noHp')
                             <span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
                         <input type="hidden" name="oldImage" value="{{$guru->foto}}">
                         @if($guru->foto)
                             <img src="{{asset('storage/' .$guru->foto)}}" class="img-preview
-                            img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 150px;" >
+                            img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 130px;" >
                         @else
                             <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
                         @endif

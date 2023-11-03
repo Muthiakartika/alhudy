@@ -12,6 +12,10 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
         <title><?php echo e(config('app.name')); ?></title>
+
+        <!-- Favicon -->
+        <link href="<?php echo e(asset('admin/img/alhudy-fav.png')); ?>" rel="icon" />
+
         <!-- Custom fonts for this template-->
         <link href="<?php echo e(asset('admin/vendor/fontawesome-free/css/all.min.css')); ?>" rel="stylesheet" type="text/css">
         <link
@@ -22,6 +26,17 @@
         <link href="<?php echo e(asset('admin/css/sb-admin-2.css')); ?>" rel="stylesheet">
         <!-- Custom styles for this page -->
         <link href="<?php echo e(asset('admin/vendor/datatables/dataTables.bootstrap4.css')); ?>" rel="stylesheet">
+
+        <!-- Trix Editor -->
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+        <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+        
+        <style>
+            trix-toolbar [data-trix-button-group="file-tools"]{
+                display: none;
+            }
+        </style>
+
     </head>
 
     <body id="page-top">
@@ -71,16 +86,16 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><?php echo e(__('ready_leave')); ?></h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><?php echo e(__('Apakah anda mau keluar')); ?></h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body"><?php echo e(__('select_logout')); ?></div>
+                    <div class="modal-body"><?php echo e(__('Pilih Keluar')); ?></div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal"><?php echo e(__('cancel')); ?></button>
                         <a class="btn btn-success" type="button" data-dismiss="modal" href="<?php echo e(route('logout')); ?>"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <?php echo e(__('logout')); ?>
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <?php echo e(__('Keluar')); ?>
 
                         </a>
                         <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">

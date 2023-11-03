@@ -143,4 +143,10 @@ class GaleriController extends Controller
         return redirect()->route('kegiatan.index')
         ->with('success','Data kegiatan berhasil dihapus');
     }
+
+    public function showData()
+    {
+        $galeri = Galeri::all();
+        return view('galeri', compact('galeri'));
+    }
 }

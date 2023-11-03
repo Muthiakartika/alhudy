@@ -17,7 +17,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('admin/css/vertical-layout-light/style.css')}}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('admin/img/alhudy-fav.png')}}" />
 </head>
 <body>
     <div class="container-scroller">
@@ -36,11 +36,12 @@
                             </div>
                             @endif
 
-                            <h4>Hello! let's get started</h4>
-                            <h6 class="font-weight-light">Please confirm your password before continuing.</h6>
+                            <h4>Halo! mari kita mulai</h4>
+                            <h6 class="font-weight-light">Harap konfirmasi kata sandi Anda sebelum melanjutkan.</h6>
                             <form class="pt-3" method="POST" action="{{ route('password.confirm') }}">
                                 @csrf
                                 <div class="form-group">
+                                    <label for="nama">Password</label>
                                     <input type="password" class="form-control form-control-lg
                                     @error('password') is-invalid @enderror" name="password" required autocomplete="current-password""
                                     id="exampleInputPassword1" placeholder="Password">
@@ -53,11 +54,11 @@
                                 </div>
                                 <div class="mt-3">
                                     <button class="btn btn-block btn-primary btn-lg
-                                    font-weight-medium auth-form-btn" type="submit">Confirm Password</button>
+                                    font-weight-medium auth-form-btn" type="submit">Konfirmasi Password</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" class="auth-link text-black">Forgot password?</a>
+                                        <a href="{{ route('password.request') }}" class="auth-link text-black">Lupa Password?</a>
                                     @endif
                                 </div>
                             </form>

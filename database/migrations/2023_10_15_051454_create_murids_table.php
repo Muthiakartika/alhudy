@@ -18,9 +18,20 @@ class CreateMuridsTable extends Migration
             $table->string('nama');
             $table->integer('kelasId');
             $table->string('nisn')->unique();
+            $table->string('nik')->unique();
+            $table->string('tempat');
+            $table->date('tglLahir');
+            $table->string('umur');
+            $table->string('alamat');
+            $table->string('noHp');
+            $table->enum('status',['aktif', 'tidak-aktif']);
+            $table->enum('gender',['laki_laki', 'perempuan']);
+            $table->enum('kebKhusus',['iya', 'tidak']);
+            $table->enum('disabilitas',['iya', 'tidak']);
+            $table->string('kip')->nullable();
             $table->string('namaAyah');
             $table->string('namaIbu');
-            $table->string('noHp');
+            $table->string('namaWali')->nullable();
             $table->timestamps();
         });
     }

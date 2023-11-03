@@ -1,70 +1,72 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <!-- CSRF Token -->
-     <meta name="csrf-token" content="{{ csrf_token() }}">
-     <title>{{ config('app.name', 'Reset Password') }}</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{asset('admin/vendors/feather/feather.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/vendors/ti-icons/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/vendors/css/vendor.bundle.base.css')}}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{asset('admin/css/vertical-layout-light/style.css')}}">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name') }} - Verify</title>
+    <link rel="icon" href="{{asset('admin/img/alhudy-fav.png')}}" type="img/png">
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('admin/vendor/fontawesome-free/css/all.css')}}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{asset('admin/css/sb-admin-2.css')}}" rel="stylesheet">
+
 </head>
-<body>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth px-0">
-                <div class="row w-100 mx-0">
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                            <div class="brand-logo">
-                                <img src="{{asset('admin/images/logo.svg')}}" alt="logo">
-                            </div>
 
-                            @if (session('resent'))
-                            <div class="alert alert-success" role="alert">
-                                {{ __('A fresh verification link has been sent to your email address.') }}
-                            </div>
-                            @endif
+<body class="bg-gradient-success">
 
-                            <h4>Hello! let's get started</h4>
-                            <h6 class="font-weight-light">{{ __('Before proceeding, please check your email for a verification link.') }}
-                                {{ __('If you did not receive the email') }},</h6>
-                            <form class="pt-3" method="POST" action="{{ route('verification.resend') }}">
-                                @csrf
-                                <div class="mt-3">
-                                    <button class="btn btn-block btn-primary btn-lg
-                                    font-weight-medium auth-form-btn" type="submit">click here to request another</button>
-                                </div>
-                            </form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-xl-8 col-lg-12 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                <div class="card-body">
+                    @if (session('resent'))
+                        <div class="alert alert-success" role="alert">
+                            {{ __('A fresh verification link has been sent to your email address.') }}
                         </div>
-                    </div>
+                    @endif
+
+                    {{ __('Before proceeding, please check your email for a verification link.') }}
+                    {{ __('If you did not receive the email') }},
+                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                    </form>
                 </div>
             </div>
-        <!-- content-wrapper ends -->
         </div>
-        <!-- page-body-wrapper ends -->
     </div>
-<script src="{{asset('admin/vendors/js/vendor.bundle.base.js')}}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{asset('admin/js/off-canvas.js')}}"></script>
-    <script src="{{asset('admin/js/hoverable-collapse.js')}}"></script>
-    <script src="{{asset('admin/js/template.js')}}"></script>
-    <script src="{{asset('admin/js/settings.js')}}"></script>
-    <script src="{{asset('admin/js/todolist.js')}}"></script>
-    <!-- endinject -->
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="{{asset('admin/vendor/jquery/jquery.js')}}"></script>
+<script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{asset('admin/vendor/jquery-easing/jquery.easing.js')}}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{asset('js/sb-admin-2.js')}}"></script>
+
 </body>
 
 </html>

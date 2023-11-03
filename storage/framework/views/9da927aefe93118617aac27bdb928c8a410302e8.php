@@ -9,21 +9,23 @@
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo e(auth()->user()->name); ?></span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo e(auth()->user()->nama); ?></span>
 
             <!--Users Profile-->
-            
-                <img class="img-profile rounded-circle" src="<?php echo e(asset('admin/img/undraw_profile_3.svg')); ?>" alt="...">
-            
+            <?php if(\Illuminate\Support\Facades\Auth::user()->profile_img): ?>
+                <img class="img-profile rounded-circle"
+                     src="<?php echo e(asset('storage/'.Auth::user()->profile_img)); ?>">
+            <?php else: ?>
+                <img class="img-profile rounded-circle" src="<?php echo e(asset('admin/img/user.png')); ?>" alt="User Picture">
+            <?php endif; ?>
         </a>
 
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
              aria-labelledby="userDropdown">
-            
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-light-200"></i>
-                <?php echo e(__('logout')); ?>
+                <?php echo e(__('keluar')); ?>
 
             </a>
         </div>

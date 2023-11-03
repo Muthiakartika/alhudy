@@ -29,7 +29,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                        id="namaGuru" name="judul" placeholder="Judul Kegiatan">
+                        id="namaGuru" name="judul">
 
                         <?php $__errorArgs = ['judul'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -47,16 +47,6 @@ unset($__errorArgs, $__bag); ?>
 
                     <div class="form-group">
                         <label for="jabatan">Keterangan</label>
-                        <textarea  class="form-control <?php $__errorArgs = ['keterangan'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                        id="jabatan" name="keterangan" placeholder="Keterangan" rows="3"></textarea>
-
                         <?php $__errorArgs = ['keterangan'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -69,6 +59,8 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                        <input id="keterangan" type="hidden" name="keterangan">
+                        <trix-editor input="keterangan"></trix-editor>
                     </div>
 
                     <div class="form-group">
@@ -107,6 +99,12 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
     <!-- /.container-fluid -->
+
+    <script>
+        document.addEventListener('trix-file-accept', function(event){
+            event.preventDefault();
+        })
+    </script>
 <?php $__env->stopSection(); ?>
 
 

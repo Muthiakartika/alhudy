@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label for="namaGuru">Judul Kegiatan</label>
                         <input type="text" class="form-control @error('judul') is-invalid @enderror"
-                        id="namaGuru" name="judul" placeholder="Judul Kegiatan">
+                        id="namaGuru" name="judul">
 
                         @error('judul')
                             <span class="invalid-feedback" role="alert">
@@ -34,14 +34,13 @@
 
                     <div class="form-group">
                         <label for="jabatan">Keterangan</label>
-                        <textarea  class="form-control @error('keterangan') is-invalid @enderror"
-                        id="jabatan" name="keterangan" placeholder="Keterangan" rows="3"></textarea>
-
                         @error('keterangan')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{$message}}</strong>
                             </span>
                         @enderror
+                        <input id="keterangan" type="hidden" name="keterangan">
+                        <trix-editor input="keterangan"></trix-editor>
                     </div>
 
                     <div class="form-group">
@@ -58,7 +57,7 @@
                     </div>
 
                     <div class="form-group">
-                        <a class="btn btn-primary" href="{{route('guru.index')}}">Kembali</a>
+                        <a class="btn btn-primary" href="{{route('kegiatan.index')}}">Kembali</a>
                         <input class="btn btn-success" type="submit" value="Kirim">
                     </div>
                 </form>
@@ -66,5 +65,11 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+
+    <script>
+        document.addEventListener('trix-file-accept', function(event){
+            event.preventDefault();
+        })
+    </script>
 @endsection
 

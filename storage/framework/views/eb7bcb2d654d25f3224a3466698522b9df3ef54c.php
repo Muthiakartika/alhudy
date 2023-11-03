@@ -30,7 +30,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                        id="namaGuru" name="nama" placeholder="Nama Guru">
+                        id="namaGuru" name="nama">
 
                         <?php $__errorArgs = ['nama'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -55,7 +55,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                        id="jabatan" name="jabatan" placeholder="Jabatan">
+                        id="jabatan" name="jabatan">
 
                         <?php $__errorArgs = ['jabatan'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -80,7 +80,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                        id="tempat" name="tempat" placeholder="Tempat Lahir">
+                        id="tempat" name="tempat">
 
                         <?php $__errorArgs = ['tempat'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -105,7 +105,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                        id="tglLahir" name="tglLahir" placeholder="Tanggal Lahir">
+                        id="tglLahir" name="tglLahir">
 
                         <?php $__errorArgs = ['tglLahir'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -130,7 +130,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                        id="niyp" name="nipy" placeholder="NIPY">
+                        id="niyp" name="nipy">
 
                         <?php $__errorArgs = ['nipy'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -156,7 +156,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                        id="noHp" name="noHp" placeholder="No Handphone">
+                        id="noHp" name="noHp">
 
                         <?php $__errorArgs = ['noHp'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

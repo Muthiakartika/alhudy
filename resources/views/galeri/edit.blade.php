@@ -35,14 +35,13 @@
 
                     <div class="form-group">
                         <label for="jabatan">Keterangan</label>
-                        <textarea  class="form-control @error('keterangan') is-invalid @enderror"
-                        id="jabatan" name="keterangan" placeholder="Keterangan" rows="3">{{$galeri->keterangan}}</textarea>
-
                         @error('keterangan')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{$message}}</strong>
                             </span>
                         @enderror
+                        <input id="keterangan" type="hidden" name="keterangan" value="{{old('keterangan', $galeri->keterangan)}}">
+                        <trix-editor input="keterangan"></trix-editor>
                     </div>
 
                     <div class="form-group">
@@ -50,7 +49,7 @@
                         <input type="hidden" name="oldImage" value="{{$galeri->foto}}">
                         @if($galeri->foto)
                             <img src="{{asset('storage/' .$galeri->foto)}}" class="img-preview
-                            img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 150px;" >
+                            img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 250px;" >
                         @else
                             <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
                         @endif
@@ -65,7 +64,7 @@
                     </div>
 
                     <div class="form-group">
-                        <a class="btn btn-primary" href="{{route('guru.index')}}">Kembali</a>
+                        <a class="btn btn-primary" href="{{route('kegiatan.index')}}">Kembali</a>
                         <input class="btn btn-success" type="submit" value="Kirim">
                     </div>
                 </form>
@@ -73,5 +72,11 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+
+    <script>
+        document.addEventListener('trix-file-accept', function(event){
+            event.preventDefault();
+        })
+    </script>
 @endsection
 

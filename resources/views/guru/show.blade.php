@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label>File upload</label>
                     <img src="{{asset('storage/' .$guru->foto)}}" class="img-preview
-                        img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 150px;" >
+                        img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 130px;" >
                 </div>
 
                 <div class="form-group">

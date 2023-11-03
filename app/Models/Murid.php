@@ -18,9 +18,20 @@ class Murid extends Model
         'nama',
         'kelasId',
         'nisn',
+        'nik',
+        'tempat',
+        'tglLahir',
+        'umur',
+        'alamat',
+        'noHp',
+        'status',
+        'gender',
+        'kebKhusus',
+        'disabilitas',
+        'kip',
         'namaAyah',
         'namaIbu',
-        'noHp'
+        'namaWali'
     ];
 
     public function kelas()

@@ -1,0 +1,130 @@
+/* gallery */
+#gallery {
+  position: relative;
+}
+
+#gallery h2 {
+    color: #bdbdbd;
+    font-weight: 900;
+    font-size: 52px;
+  }
+
+.gallery .gallery-item {
+  margin-bottom: 30px;
+}
+
+.gallery #gallery-flters {
+  padding: 0;
+  margin: 0 auto 35px auto;
+  list-style: none;
+  text-align: center;
+  background: #fff;
+  border-radius: 50px;
+  padding: 2px 15px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+.gallery #gallery-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 15px 8px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #5a656e;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.gallery #gallery-flters li:hover, .gallery #gallery-flters li.filter-active {
+  color: #ffffff;
+}
+
+.gallery #gallery-flters li:last-child {
+  margin-right: 0;
+}
+
+.gallery .gallery-wrap {
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.gallery .gallery-wrap::before {
+  content: "";
+  background: rgba(210,156,50, 0.3);
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 30px;
+  bottom: 30px;
+  transition: all ease-in-out 0.3s;
+  z-index: 2;
+  opacity: 0;
+}
+
+.gallery .gallery-wrap .gallery-info {
+  opacity: 0;
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 3;
+  transition: all ease-in-out 0.3s;
+}
+
+.gallery .gallery-wrap .gallery-info h4 {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.gallery .gallery-wrap .gallery-info p {
+  color: #ffffff;
+  font-size: 14px;
+  /* text-transform: uppercase; */
+}
+
+.gallery .gallery-wrap .gallery-links {
+  opacity: 0;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  text-align: center;
+  z-index: 3;
+  position: absolute;
+  transition: all ease-in-out 0.3s;
+}
+
+.gallery .gallery-wrap .gallery-links a {
+  color: #fff;
+  margin: 0 2px;
+  font-size: 28px;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.gallery .gallery-wrap .gallery-links a:hover {
+  color: #ffffff;
+}
+
+.gallery .gallery-wrap:hover::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+}
+
+.gallery .gallery-wrap:hover .gallery-info {
+  opacity: 1;
+  top: calc(50% - 48px);
+}
+
+.gallery .gallery-wrap:hover .gallery-links {
+  opacity: 1;
+  bottom: calc(50% - 50px);
+}

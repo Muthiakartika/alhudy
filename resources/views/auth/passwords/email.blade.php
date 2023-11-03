@@ -1,81 +1,104 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <!-- CSRF Token -->
-     <meta name="csrf-token" content="{{ csrf_token() }}">
-     <title>{{ config('app.name', 'Reset Password') }}</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{asset('admin/vendors/feather/feather.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/vendors/ti-icons/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/vendors/css/vendor.bundle.base.css')}}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{asset('admin/css/vertical-layout-light/style.css')}}">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name') }} - Forget Password</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('admin/vendor/fontawesome-free/css/all.css')}}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link rel="icon" href="{{asset('admin/img/alhudy-fav.png')}}" type="img/png">
+    <!-- Custom styles for this template-->
+    <link href="{{asset('admin/css/sb-admin-2.css')}}" rel="stylesheet">
+
 </head>
-<body>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth px-0">
-                <div class="row w-100 mx-0">
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                            <div class="brand-logo">
-                                <img src="{{asset('admin/images/logo.svg')}}" alt="logo">
-                            </div>
 
-                            @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                            @endif
+<body class="bg-gradient-success">
 
-                            <h4>Hello! let's get started</h4>
-                            <h6 class="font-weight-light">Please put your valid email.</h6>
-                            <form class="pt-3" method="POST" action="{{ route('password.email') }}">
-                                @csrf
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}"
-                                    required autocomplete="email" autofocus
-                                    id="exampleInputEmail1" placeholder="Email">
+<div class="container">
 
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-2">Lupa kata sandi Anda?</h1>
+
+                                    </div>
+
+                                    @if (session('status'))
+                                        <div class="alert small alert-success" role="alert">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+
+                                    <form class="user" method="POST" action="{{ route('password.email') }}">
+                                        @csrf
+
+                                        <div class="form-group">
+                                            <label for="nama">Email</label>
+                                            <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
+                                                   name="email"
+                                                   id="exampleInputEmail" aria-describedby="emailHelp">
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-success btn-user btn-block">
+                                            Kirim Link Reset Kata Sandi
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small text-success" href="{{route('register')}}">Daftar Akun!</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small text-success" href="{{route('login')}}">Sudah punya akun? Masuk!</a>
+                                    </div>
                                 </div>
-                                <div class="mt-3">
-                                    <button class="btn btn-block btn-primary btn-lg
-                                    font-weight-medium auth-form-btn" type="submit">Send Password Reset Link</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <!-- content-wrapper ends -->
         </div>
-        <!-- page-body-wrapper ends -->
     </div>
-    <script src="{{asset('admin/vendors/js/vendor.bundle.base.js')}}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{asset('admin/js/off-canvas.js')}}"></script>
-    <script src="{{asset('admin/js/hoverable-collapse.js')}}"></script>
-    <script src="{{asset('admin/js/template.js')}}"></script>
-    <script src="{{asset('admin/js/settings.js')}}"></script>
-    <script src="{{asset('admin/js/todolist.js')}}"></script>
-    <!-- endinject -->
-</body>
-</html>
+</div>
 
+<!-- Bootstrap core JavaScript-->
+<script src="{{asset('admin/vendor/jquery/jquery.js')}}"></script>
+<script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{asset('admin/vendor/jquery-easing/jquery.easing.js')}}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{asset('js/sb-admin-2.js')}}"></script>
+
+</body>
+
+</html>

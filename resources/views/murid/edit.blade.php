@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <label for="jabatan">NISN</label>
                         <input type="number" class="form-control @error('nisn') is-invalid @enderror"
-                        id="niyp" name="nisn" placeholder="NISN" value="{{$murid->nisn}}">
+                        id="niyp" name="nisn" value="{{$murid->nisn}}">
 
                         @error('nisn')
                             <span class="invalid-feedback" role="alert">
@@ -65,9 +65,159 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="namaGuru">Nama Ayah</label>
+                        <label for="jabatan">NIK</label>
+                        <input type="number" class="form-control @error('nik') is-invalid @enderror"
+                        id="niyp" name="nik" value="{{$murid->nik}}">
+
+                        @error('nik')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namaGuru">Tempat Lahir</label>
+                        <input type="text" class="form-control @error('tempat') is-invalid @enderror"
+                        id="namaSiswa" name="tempat" value="{{$murid->tempat}}">
+
+                        @error('tempat')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namaGuru">Tanggal Lahir</label>
+                        <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
+                        id="namaSiswa" name="tglLahir" value="{{$murid->tglLahir}}">
+
+                        @error('tglLahir')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namaGuru">Umur</label>
+                        <input type="number" maxlength="2" class="form-control @error('umur') is-invalid @enderror"
+                        id="namaSiswa" name="umur" value="{{$murid->umur}}">
+
+                        @error('umur')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namaGuru">Alamat</label>
+                        <input type="number" maxlength="2" class="form-control @error('umur') is-invalid @enderror"
+                        id="namaSiswa" name="alamat" value="{{$murid->alamat}}">
+
+                        @error('umur')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jabatan">No Telepon</label>
+                        <input type="number" minlength="10" maxlength="12" class="form-control @error('noHp') is-invalid @enderror"
+                        id="noHp" name="noHp" value="{{$murid->noHp}}">
+
+                        @error('noHp')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jabatan">Status</label>
+                        <select type="text" class="form-control form-control-user @error('status')
+                        is-invalid @enderror" name="status">
+                            <option value="" selected disabled>--- PILIH ---</option>
+                            <option value="aktif" {{ old('status') == 'aktif' || (isset($murid) && $murid->status == 'aktif') ? 'selected' : '' }}>Aktif</option>
+                            <option value="tidak-aktif"> {{ old('status') == 'tidak-aktif' || (isset($murid) && $murid->status == 'tidak-aktif') ? 'selected' : '' }}Tidak Aktif</option>
+                        </select>
+
+                        @error('status')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jabatan">Jenis Kelamin</label>
+                        <select type="text" class="form-control form-control-user @error('gender')
+                        is-invalid @enderror" name="gender">
+                            <option value="" selected disabled>--- PILIH ---</option>
+                            <option value="laki_laki" {{ old('gender') == 'laki_laki' || (isset($murid) && $murid->gender == 'laki_laki') ? 'selected' : '' }}>Laki - Laki</option>
+                            <option value="perempuan" {{ old('gender') == 'perempuan' || (isset($murid) && $murid->gender == 'perempuan') ? 'selected' : '' }}>Perempuan</option>
+                        </select>
+
+                        @error('gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jabatan">Kebutuhan Khusus</label>
+                        <select type="text" class="form-control form-control-user @error('kebKhusus')
+                        is-invalid @enderror" name="kebKhusus">
+                            <option value="" selected disabled>--- PILIH ---</option>
+                            <option value="iya" {{ old('kenKhusus') == 'iya' || (isset($murid) && $murid->kenKhusus == 'iya') ? 'selected' : '' }}>Ada</option>
+                            <option value="tidak" {{ old('kenKhusus') == 'tidak' || (isset($murid) && $murid->kenKhusus == 'tidak') ? 'selected' : '' }}>Tidak Ada</option>
+                        </select>
+
+                        @error('kebKhusus')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jabatan">Disabilitas</label>
+                        <select type="text" class="form-control form-control-user @error('disabilitas')
+                        is-invalid @enderror" name="disabilitas">
+                            <option value="" selected disabled>--- PILIH ---</option>
+                            <option value="iya" {{ old('disabilitas') == 'iya' || (isset($murid) && $murid->disabilitas == 'iya') ? 'selected' : '' }}>Ada</option>
+                            <option value="tidak" {{ old('disabilitas') == 'tidak' || (isset($murid) && $murid->disabilitas == 'tidak') ? 'selected' : '' }}>Tidak Ada</option>
+                        </select>
+                    </select>
+
+                        @error('disabilitas')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="namaGuru">Nomor KIP/PIP</label>
+                        <input type="text" class="form-control @error('kip') is-invalid @enderror"
+                        id="namaSiswa" name="kip" value="{{$murid->kip}}">
+
+                        @error('kip')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="namaGuru">Nama Ayah Kandung</label>
                         <input type="text" class="form-control @error('namaAyah') is-invalid @enderror"
-                        id="namaSiswa" name="namaAyah" placeholder="Nama Guru" value="{{$murid->namaAyah}}">
+                        id="namaSiswa" name="namaAyah" value="{{$murid->namaAyah}}">
 
                         @error('namaAyah')
                             <span class="invalid-feedback" role="alert">
@@ -76,9 +226,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="namaGuru">Nama Ibu</label>
+                        <label for="namaGuru">Nama Ibu Kandung</label>
                         <input type="text" class="form-control @error('namaIbu') is-invalid @enderror"
-                        id="namaSiswa" name="namaIbu" placeholder="Nama Guru" value="{{$murid->namaIbu}}">
+                        id="namaSiswa" name="namaIbu" value="{{$murid->namaIbu}}">
 
                         @error('namaIbu')
                             <span class="invalid-feedback" role="alert">
@@ -88,11 +238,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">No Handphone</label>
-                        <input type="number" minlength="10" maxlength="12" class="form-control @error('noHp') is-invalid @enderror"
-                        id="noHp" name="noHp" placeholder="No Handphone" value="{{$murid->noHp}}">
+                        <label for="namaGuru">Nama Wali</label>
+                        <input type="text" class="form-control @error('namaWali') is-invalid @enderror"
+                        id="namaSiswa" name="namaWali" value="{{$murid->namaWali}}">
 
-                        @error('noHp')
+                        @error('namaWali')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{$message}}</strong>
                             </span>

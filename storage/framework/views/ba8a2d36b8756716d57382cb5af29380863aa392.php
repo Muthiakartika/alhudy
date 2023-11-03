@@ -178,7 +178,7 @@ unset($__errorArgs, $__bag); ?>
                         <input type="hidden" name="oldImage" value="<?php echo e($guru->foto); ?>">
                         <?php if($guru->foto): ?>
                             <img src="<?php echo e(asset('storage/' .$guru->foto)); ?>" class="img-preview
-                            img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 150px;" >
+                            img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 130px;" >
                         <?php else: ?>
                             <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
                         <?php endif; ?>

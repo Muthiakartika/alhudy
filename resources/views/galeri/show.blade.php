@@ -22,24 +22,20 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="namaGuru">Judul Kegiatan</label>
-                        <span type="text" class="form-control" id="namaGuru" name="judul">{{$galeri->judul}}</span>
+                        <span type="text" class="form-control" id="judul" name="judul">{{$galeri->judul}}</span>
                     </div>
 
                     <div class="form-group">
                         <label for="jabatan">Keterangan</label>
-                        <textarea  class="form-control" name="keterangan" rows="3" readonly>{{$galeri->keterangan}}</textarea>
-
-                        @error('keterangan')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                        @enderror
+                            <input id="keterangan" type="hidden" name="keterangan" value="{{$galeri->keterangan}}">
+                            <trix-editor input="keterangan" readonly></trix-editor>
+                            <div data-trix-content="{{ $galeri->keterangan }}" data-trix-readonly data-trix-disable-uploads></div>
                     </div>
 
                     <div class="form-group">
                         <label>Upload Foto</label>
                         <img src="{{asset('storage/' .$galeri->foto)}}" class="img-preview
-                        img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 150px;" >
+                        img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 250px;" >
                     </div>
 
                     <div class="form-group">
@@ -50,5 +46,10 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+
+    <script>
+        document.querySelector('trix-editor').editor.element.setAttribute('contentEditable', false)
+    </script>
+
 @endsection
 

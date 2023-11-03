@@ -25,6 +25,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/galeri', [GaleriController::class, 'showData'])->name('galeri');
+Route::get('/tenaga-kependidikan', [GuruController::class, 'showData'])->name('tenaga-pendidik');
+Route::view('/visi-misi', 'visi_misi')->name('visi-misi');
 
 ##ADMINISTRATOR
 Route::group(['middleware' => 'admin'], function () {
@@ -43,5 +46,22 @@ Route::group(['middleware' => 'admin'], function () {
         Route::resource('/kegiatan', GaleriController::class);
     });
 });
+
+## ORTU
+Route::group(['middleware' => ['ortu', 'verified']], function (){
+        //LOGIN
+        Route::get('/ppdb-dashboard', [HomeController::class, 'ppdbIndex'])
+        ->name('ppdb.index');
+
+        // //DAFTAR GURU
+        // Route::resource('/guru', GuruController::class);
+
+        // //DAFTAR SISWA
+        // Route::resource('/murid', MuridController::class);
+
+        // //DATA KEGIATAN
+        // Route::resource('/kegiatan', GaleriController::class);
+});
+
 
 ## ADMINISTRATOR DAN ORTU

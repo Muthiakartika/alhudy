@@ -2,9 +2,9 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        {{-- <div class="sidebar-brand-icon">
-            <img src="{{asset('admin/img/alhudy.png')}}" class="img-fluid icon-circle" alt="Al-Hudy">
-        </div> --}}
+        <div class="sidebar-brand-icon">
+            <img src="{{asset('admin/img/hudy.png')}}" class="img-fluid icon-circle" alt="Al-Hudy">
+        </div>
         <div class="sidebar-brand-text mx-2 ">
             <span>mi al-hudy</span>
         </div>
@@ -49,6 +49,48 @@
                 <span>Data Kegiatan</span></a>
         </li>
 
+    @elseif (auth()->user()->role =='ortu')
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item {{ Request::is('ppdb-dashboard') ? 'active' : '' }}">
+            <a href="{{route('ppdb.index')}}" class="nav-link ">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        @php
+        $nama = Auth::user()->nama;
+        $dataSiswa = DB::table('ppdbs')->join('users', 'ppdbs.nama', '=', 'users.nama')
+                        ->where('users.nama', $nama)
+                        ->count();
+        @endphp
+
+        @if ($dataSiswa < 1)
+
+        <!-- Nav Item -->
+        <li class="nav-item">
+            <a class="nav-link " href="#">
+                <i class="fas fa-user-graduate"></i>
+                <span>Pendaftaran Siswa</span>
+            </a>
+        </li>
+        @else
+        <!-- Nav Item -->
+        <li class="nav-item">
+            <a class="nav-link " href="#">
+                <i class="fas fa-user-graduate"></i>
+                <span>Pendaftaran Siswa</span>
+            </a>
+        </li>
+        <!-- Nav Item -->
+        <li class="nav-item">
+            <a class="nav-link " href="{{asset('admin/file/surat pernyataan.pdf')}}">
+                <i class="fas fa-book"></i>
+                <span>Surat Pernyataan</span>
+            </a>
+        </li>
+        @endif
     @endif
 <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

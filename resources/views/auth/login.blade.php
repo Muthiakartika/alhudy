@@ -19,7 +19,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link rel="icon" href="{{asset('admin/img/favicon2.png')}}" type="img/png">
+    <link rel="icon" href="{{asset('admin/img/alhudy-fav.png')}}" type="img/png">
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.css')}}" rel="stylesheet">
 
@@ -42,7 +42,7 @@
                         <div class="col-lg-12">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang Kembali!</h1>
                                 </div>
 
                                 @if ($message = Session::get('error'))
@@ -65,9 +65,9 @@
 
                                     @csrf
                                     <div class="form-group">
+                                        <label for="nama">Email</label>
                                         <input id="email" type="email" class="form-control form-control-user  @error('email')
-                                            is-invalid @enderror" name="email" maxlength="255" value="{{old('email')}}"
-                                               placeholder="{{__('Email')}}">
+                                            is-invalid @enderror" name="email" maxlength="255" value="{{old('email')}}">
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -76,8 +76,9 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="nama">Password</label>
                                         <input id="password" type="password" class="form-control form-control-user @error('password')
-                                            is-invalid @enderror" name="password" minlength="8" maxlength="64" placeholder="{{__('Password')}}">
+                                            is-invalid @enderror" name="password" minlength="8" maxlength="64">
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">

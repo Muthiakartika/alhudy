@@ -54,6 +54,9 @@ class LoginController extends Controller
             if (auth()->user()->role == 'admin'){
                 return redirect()->route('admin.index');
             }
+            elseif (auth()->user()->role == 'ortu'){
+                return redirect()->route('ppdb.index');
+            }
             else {
                 return redirect()->route('home');
             }

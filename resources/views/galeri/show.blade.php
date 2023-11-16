@@ -4,10 +4,19 @@
 
     <div class="container-fluid">
 
-        <!-- Page Heading -->
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{session('error')}}
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         @endif
 
@@ -34,8 +43,15 @@
 
                     <div class="form-group">
                         <label>Upload Foto</label>
-                        <img src="{{asset('storage/' .$galeri->foto)}}" class="img-preview
-                        img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 250px;" >
+                            @foreach (json_decode($galeri->foto, true) as $oldImage)
+                            @if (is_array($oldImage))
+                                @foreach ($oldImage as $image)
+                                    <img src="{{ asset('storage/' . $image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 250px;">
+                                @endforeach
+                            @else
+                                <img src="{{ asset('storage/' . $oldImage) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block" style="height: 150px; width: 250px;">
+                            @endif
+                            @endforeach
                     </div>
 
                     <div class="form-group">

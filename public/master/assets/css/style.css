@@ -548,7 +548,7 @@ h1, h2, h3, h4, h5, h6 {
 #social .icon-box i {
   font-size: 48px;
   line-height: 1;
-  color: #ff0000;
+  color: #5fcf80;
 }
 #social .icon-box h3 {
   font-weight: 700;
@@ -566,7 +566,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: ease-in-out 0.3s;
 }
 #social .icon-box h3 a:hover {
-  color: #ff0000;
+  color: #5fcf80;
 }
 #social .icon-box:hover {
   border-color: #5fcf80;

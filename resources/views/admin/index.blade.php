@@ -7,9 +7,26 @@
         $dataGuru = DB::table('gurus')->count();
         $dataMurid = DB::table('murids')->count();
         $dataGaleri = DB::table('galeris')->count();
+        $dataPPDB = DB::table('ppdbs')->count();
     @endphp
         <!-- Begin Page Content -->
     <div class="container-fluid">
+
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @elseif ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -33,7 +50,7 @@
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{$dataGuru}}</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-history fa-2x text-gray-300"></i>
+                                    <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +68,7 @@
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{$dataMurid}}</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-redo fa-2x text-gray-300"></i>
+                                    <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -66,10 +83,10 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Jumlah PPDB</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$dataPPDB}}</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-check fa-2x text-gray-300"></i>
+                                    <i class="fas fa-user-check fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +104,7 @@
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{$dataGaleri}}</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-times fa-2x text-gray-300"></i>
+                                    <i class="fas fa-images fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>

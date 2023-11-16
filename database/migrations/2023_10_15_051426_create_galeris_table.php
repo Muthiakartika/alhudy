@@ -15,9 +15,9 @@ class CreateGalerisTable extends Migration
     {
         Schema::create('galeris', function (Blueprint $table) {
             $table->id();
-            $table->string('foto');
+            $table->string('foto', 500);
             $table->string('judul');
-            $table->string('keterangan');
+            $table->string('keterangan', 500);
             $table->timestamps();
         });
     }

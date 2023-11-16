@@ -41,8 +41,13 @@
                         {{-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> --}}
                         <div class="col-lg-12">
                             <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang Kembali!</h1>
+                                {{-- <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+                                </div> --}}
+
+                                <!-- Tambahkan gambar di bawah tulisan -->
+                                <div class="text-center mb-4">
+                                    <img src="{{asset('admin/img/sidelogo.png')}}" alt="Foto Selamat Datang" class="img-fluid" style="width: 230px; height: auto;">
                                 </div>
 
                                 @if ($message = Session::get('error'))
@@ -100,16 +105,18 @@
                                 </form>
                                 <hr>
 
+
                                 @if (Route::has('password.request'))
                                     <div class="text-center">
                                         <a class="small text-success"  href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                            {{ __('Lupa Password?') }}
                                         </a>
                                     </div>
                                 @endif
-                                {{-- <div class="text-center">
-                                    <a class="small text-success" href="{{('register')}}">Create an Account!</a>
-                                </div> --}}
+                                <div class="text-center">
+                                    <a class="small text-success" href="{{route('register')}}">Daftar Akun!</a>
+                                </div>
+
                             </div>
                         </div>
                     </div>

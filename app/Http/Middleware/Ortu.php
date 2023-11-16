@@ -20,6 +20,6 @@ class Ortu
         if (Auth::user()->role == "ortu") {
             return $next($request);
         }
-        abort(403);
+        return redirect('home')->with('error',"Maaf anda tidak memiliki hak akses!");
     }
 }

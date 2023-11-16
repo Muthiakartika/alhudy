@@ -10,7 +10,6 @@
         <meta property="og:image" content="{{asset('master/images/testing1.jpg')}}" />
 		<!-- <meta property="og:image" content="./images/hero-bg-gray.png" /> -->
 
-
         <!-- Favicons -->
         <link href="{{asset('master/images/alhudy-fav.png')}}" rel="icon" />
 
@@ -45,7 +44,7 @@
 						<li><a href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
 						<li><a href="{{route('visi-misi')}}">Visi & Misi</a></li>
 						<li><a href="{{route('galeri')}}">Galeri</a></li>
-						<li><a href="#">Kontak Kami</a></li>
+						<li><a href="{{route('kontak-kami')}}">Kontak Kami</a></li>
 						<li><a href="{{ route('login') }}">Login</a></li>
 
                     </ul>
@@ -62,7 +61,7 @@
                     <div class="col-xl-6 col-lg-8">
                         <h1>Al-Hudy</h1>
                         <h1 class="color-gold">الهودي</h1>
-                        <h2 class="content-tag">Lorem ipsum dolor sit amet</h2>
+                        <h2 class="content-tag">Mencetak Pengusaha Muslim Profesional</h2>
                     </div>
                 </div>
             </div>
@@ -76,46 +75,43 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 order-1 order-lg-2">
-                            <img src="{{asset('master/images/about5.jpg')}}" class="img-fluid" alt="" />
+                            <img src="{{asset('master/images/kepala-sekolah.png')}}" class="img-fluid" alt="Kepala Sekolah">
                         </div>
                         <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1">
                             <div class="section-title">
-                                <h2><span class="content-t1">Lorem</span><span class="color-green"> Ipsum</span></h2>
+                                <h3><span class="content-t1">Sambutan</span><span class="color-green"> Kepala Sekolah</span></h3>
                             </div>
                             <br />
                             <p class="content-p1">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-								Dolor sed viverra ipsum nunc aliquet. Tristique et egestas quis ipsum.
-								Nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur.
-								Pharetra convallis posuere morbi leo urna molestie at elementum.
-								Tellus id interdum velit laoreet id donec ultrices tincidunt.
-								Elementum sagittis vitae et leo. Tempor nec feugiat nisl pretium fusce id velit.
-								Faucibus vitae aliquet nec ullamcorper sit. Vel pretium lectus quam id leo in vitae turpis.
+                                Assalamu'alaikum Wr. Wb
+                                <br>
+                                Puji syukur kita panjatkan kehadirat Allah SWT atas segala limpahan rahmat dan karunia-Nya.
+                                MI Al Hudy berkomitmen untuk meningkatkan kualitas pendidikan Islam, membebaskan peserta didik
+                                dari ketidaktahuan, ketidakmampuan, dan ketidakberdayaan. Kami mengajak seluruh pemangku kepentingan,
+                                terutama orang tua dan masyarakat, untuk bersama-sama mendukung kemajuan pendidikan.
+                                Saran dan kritik membangun dari masyarakat sangat diharapkan demi peningkatan mutu pendidikan di MI Al Hudy.
+                                Terima kasih atas partisipasi dan kerjasama. Semoga MI Al Hudy terus berkembang positif untuk masa depan yang lebih baik.
+                                <br>
+                                Wassalamu'alaikum Wr. Wb
                             </p>
                         </div>
                     </div>
                     <br /><br /><br /><br />
                     <div class="row">
                         <div class="col-lg-6">
-                            <img src="{{asset('master/images/about4.jpg')}}" class="img-fluid" alt="" />
+                            <img src="{{asset('master/images/hudy-bg.png')}}" class="img-fluid" alt="al hudy">
                         </div>
                         <div class="col-lg-6 type">
-                            <h3 class="text-start content-t2">Lorem ipsum dolor</h3>
-                            <div class="icon-box mt-5">
-                                <i class="bx bx-cube-alt"></i>
-                                <h4 class="content-t3">Lorem ipsum dolor</h4>
-                                <p class="content-p2">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet. Tristique et egestas quis ipsum.</p>
-                            </div>
-                            <div class="icon-box mt-5">
-                                <i class="bx bx-cube-alt"></i>
-                                <h4 class="content-t4">Lorem ipsum dolorl</h4>
-                                <p class="content-p3">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet. Tristique et egestas quis ipsum.</p>
-                            </div>
-                            <div class="icon-box mt-5">
-                                <i class="bx bx-cube-alt"></i>
-                                <h4 class="content-t5">Lorem ipsum dolor</h4>
-                                <p class="content-p4">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet. Tristique et egestas quis ipsum.</p>
-                            </div>
+                            <h3 class="text-start content-t2">Tujuan Kelembagaan</h3>
+                            <p class="content-p1">
+                                Memberikan bekal kemampuan dasar Agama Islam yang baik melalui membaca, menulis,
+                                dan praktek Ubudiyah sehari-hari sehingga siswa mampu mengaplikasikan keilmuanya
+                                nanti di Masyarakat, dan tentu saja Pendidikan Umum seperti menghitung, juga di ajarkan sebagai
+                                penyeimbang Ilmu yang di berikan. Siswa juga diberikan Skill Entrepreneurship melalui
+                                Pendidikan Kewirausahaan dan Pelatihan Skill melalui Creative Corner dan Outing Class.
+                                Dengan semua pendidikan yang di ajarkan, Lembaga yakin siswa MI Al-Hudy siap untuk menghadapi
+                                tantangan di masa depan mereka
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -220,7 +216,7 @@
 
 							<div class="icon-box">
                                 <i class="bx bxl-instagram"></i>
-                                <h3><a href="#" target="_blank">Instagram</a></h3>
+                                <h3><a href="https://www.instagram.com/mtsalhudy2019/?hl=id" target="_blank">Instagram</a></h3>
                             </div>
 
                         </div>
@@ -228,7 +224,7 @@
                         <div class="col-xl-2 col-md-4">
                             <div class="icon-box">
                                 <i class="bx bxl-facebook"></i>
-                                <h3><a href="#" target="_blank">Facebook</a></h3>
+                                <h3><a href="https://www.facebook.com/mialhudy/?locale=id_ID" target="_blank">Facebook</a></h3>
                             </div>
                         </div>
                         <div class="col-xl-2 col-md-4">
@@ -240,13 +236,13 @@
                         <div class="col-xl-2 col-md-4">
                             <div class="icon-box">
                                 <i class="bx bxl-google"></i>
-                                <h3><a href="#">Email</a></h3>
+                                <h3><a href="mailto:yayasansinhudy@gmail.com">Email</a></h3>
                             </div>
                         </div>
                         <div class="col-xl-2 col-md-4">
                             <div class="icon-box">
-                                <i class="bx bxl-github"></i>
-                                <h3><a href="#" target="_blank">Github</a></h3>
+                                <i class="bx bxl-youtube"></i>
+                                <h3><a href="https://www.youtube.com/channel/UCL_J8g2vIvwkcIiL8WCjtaQ" target="_blank">Youtube</a></h3>
                             </div>
                         </div>
                     </div>
@@ -255,7 +251,7 @@
                     <br /><br /><br /><br />
                     <!-- Google Maps -->
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.6353316141813!2d115.19615231478515!3d-8.820286993665807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7cfb7a72de11516e!2zOMKwNDknMTMuMCJTIDExNcKwMTEnNTQuMCJF!5e0!3m2!1sid!2sid!4v1652331562631!5m2!1sid!2sid"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d986.0047211793859!2d115.20095292854697!3d-8.689753399457665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd240d83b22258d%3A0x9714ad32cf5a1aa7!2sMI%20Al%20Hudy!5e0!3m2!1sen!2sid!4v1699269410148!5m2!1sen!2sid"
                         width="100%"
                         height="500"
                         frameborder="0"
@@ -274,9 +270,9 @@
                             <div class="footer-info">
                                 <img src="{{asset('master/images/sidelogo.png')}}" alt="" width="150" />
                                 <p>
-                                    <br />
+                                    <br/>
                                     <strong>Phone:</strong> +62 8179 7332 11<br />
-                                    <strong>Email:</strong> testing@gmail.com<br />
+                                    <strong>Email:</strong> yayasansinhudy@gmail.com<br />
                                 </p>
                             </div>
                         </div>
@@ -294,7 +290,7 @@
                             <h4>Al-Hudy</h4>
                             <ul>
                                 <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeri')}}">Galeri</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Kontak Kami</a></li>
+                                <li><i class="bx bx-chevron-right"></i><a href="{{route('kontak-kami')}}">Kontak Kami</a></li>
                                 <li>
                                     <i class="bx bx-chevron-right"></i>
                                     <a href="{{route('login')}}">Login</a>
@@ -304,15 +300,15 @@
 
                         <div class="col-lg-4 col-md-6 footer-newsletter">
                             <div class="social-links mt-xxl-5">
-                                <a href="#" target="_blank" class="instagram"
+                                <a href="https://www.instagram.com/mtsalhudy2019/?hl=id" target="_blank" class="instagram"
                                     ><i class="bx bxl-instagram"></i
                                 ></a>
-                                <a href="#" target="_blank" class="facebook"
+                                <a href="https://www.facebook.com/mialhudy/?locale=id_ID" target="_blank" class="facebook"
                                     ><i class="bx bxl-facebook"></i
                                 ></a>
                                 <a href="https://wa.me/628179733211" target="_blank" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
-                                <a href="mailto:ryuagusta@gmail.com" class="google"><i class="bx bxl-google"></i></a>
-                                <a href="#" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                                <a href="mailto:yayasansinhudy@gmail.com" class="google"><i class="bx bxl-google"></i></a>
+                                <a href="https://www.youtube.com/channel/UCL_J8g2vIvwkcIiL8WCjtaQ" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
                             </div>
                         </div>
                     </div>

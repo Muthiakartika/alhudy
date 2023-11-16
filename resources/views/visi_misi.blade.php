@@ -19,13 +19,12 @@
 
   <!-- Vendor CSS Files -->
   <link href="{{asset('master/assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/aos/aos.css" rel="stylesheet')}}">
+  <link href="{{asset('master/assets/vendor/aos/aos.css')}}" rel="stylesheet">
   <link href="{{asset('master/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/bootstrap-icons/bootstrap-icons.cs')}}" rel="stylesheet">
+  <link href="{{asset('master/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
   <link href="{{asset('master/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/remixicon/remixicon.css" rel=')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet"
-
+  <link href="{{asset('master/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{asset('master/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{{asset('master/assets/css/style.css')}}" rel="stylesheet">
@@ -46,7 +45,7 @@
 			<li><a href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
 			<li><a class="nav-link scrollto active" href="{{route('visi-misi')}}">Visi & Misi</a></li>
 			<li><a href="{{route('galeri')}}">Galeri</a></li>
-			<li><a href="#">Kontak Kami</a></li>
+			<li><a href="{{route('kontak-kami')}}">Kontak Kami</a></li>
 			<li><a href="{{ route('login') }}">Login</a></li>
 
 		</ul>
@@ -81,17 +80,20 @@
 					<img src="{{asset('master/images/visi_misi.png')}}" class="img-fluid" alt="">
 
 					<h2><br>Visi</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nibh mauris cursus mattis molestie a iaculis at.
-					Quis commodo odio aenean sed adipiscing diam donec. Odio eu feugiat pretium nibh ipsum consequat nisl. Et pharetra pharetra massa massa ultricies mi quis. Laoreet sit amet cursus sit.
-					Id ornare arcu odio ut sem. At imperdiet dui accumsan sit amet nulla. Tellus rutrum tellus pellentesque eu. Nulla facilisi nullam vehicula ipsum a. </p>
-					<br>
+					<p>Terwujudnya Profil Pelajar Pancasila yang Intelektual dengan Berwawasan Global yang Unggul dalam Imtaq dan Iptek.  </p>
+					</br>
 					<h2>Misi</h2>
-					 <ol>
-					   <li>Senectus et netus et malesuada. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada.</li>
-					   <li>Ridiculus mus mauris vitae ultricies leo integer malesuada nunc. Dignissim enim sit amet venenatis urna.</li>
-					   <li>Sem integer vitae justo eget magna fermentum iaculis eu non. A scelerisque purus semper eget duis at. Vulputate ut pharetra sit amet aliquam.</li>
-					   <li>Ultrices vitae auctor eu augue ut lectus arcu bibendum. Donec ac odio tempor orci dapibus ultrices in iaculis. Tristique risus nec feugiat in fermentum posuere. Senectus et netus et malesuada fames ac.</li>
-					 </ol>
+                        <ol>
+                            <li>Meningkatkan pembinaan pengamalan nilai-nilai keimanan dan ketawwaan kepada Allah SWT Tuhan yang Maha Ese (beriman bertakwa).</li>
+                            <li>Menumbuhkan potensi diri setiap peserta didik untuk dikembangkan secara maksimal (bernalar kirits).</li>
+                            <li>Mewujudkan sistem pendidikan yang dapat mengembangkan kepribadian yang dinamis dan produktif serta berdaya saing global (berkebhinekaan global).</li>
+                            <li>Mewujudkan kondisi sekolah yang kondusif berlandaskan budaya.</li>
+                            <li>Menumbuhkembangkan semangat keunggulan dan gotong royong pada seluruh warga sekolah (gotong royong).</li>
+                            <li>Menigkatkan kemampuan sumber daya manusia dalam penguasaan ilmu-ilmu dasar dan komunikasi yang menunjang perkembangan IPTEK dan pengembangan aktivitas serta kreativitas siswa (kreatif).</li>
+                            <li>Mewujudkan budaya literasi, rasa ingin tahu, bertoleransi, bekerja sama, saling menghargai, disiplin, jujur, kerja keras, kreatif dan inovatif.</li>
+                        </ol>
+					<h2>Moto</h2>
+					<p style="font-family: Satisfy, Calibri, Times New Roman; font-size:56px">Mencetak Pengusaha Muslim Profesional</p>
 					</div>
 				</div>
 			</div>
@@ -101,64 +103,65 @@
   </main><!-- End #main -->
 
   <footer id="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-info">
-                                <img src="{{asset('master/images/sidelogo.png')}}" alt="" width="150" />
-                                <p>
-                                    <br />
-                                    <strong>Phone:</strong> +62 8179 7332 11<br />
-                                    <strong>Email:</strong> testing@gmail.com<br />
-                                </p>
-                            </div>
-                        </div>
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-info">
+                        <img src="{{asset('master/images/sidelogo.png')}}" alt="" width="150" />
+                        <p>
+                            <br/>
+                            <strong>Phone:</strong> +62 8179 7332 11<br />
+                            <strong>Email:</strong> yayasansinhudy@gmail.com<br />
+                        </p>
+                    </div>
+                </div>
 
-                        <div class="col-lg-2 col-md-6 footer-links">
-                            <h4>Al-Hudy</h4>
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{{route('visi-misi')}}">Visi & Misi</a></li>
-                            </ul>
-                        </div>
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Al-Hudy</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('visi-misi')}}">Visi & Misi</a></li>
+                    </ul>
+                </div>
 
-                        <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Al-Hudy</h4>
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeri')}}">Galeri</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Kontak Kami</a></li>
-                                <li>
-                                    <i class="bx bx-chevron-right"></i>
-                                    <a href="{{route('login')}}">Login</a>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Al-Hudy</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i><a href="{{route('galeri')}}">Galeri</a></li>
+                        <li><i class="bx bx-chevron-right"></i><a href="{{route('kontak-kami')}}">Kontak Kami</a></li>
+                        <li>
+                            <i class="bx bx-chevron-right"></i>
+                            <a href="{{route('login')}}">Login</a>
+                        </li>
+                    </ul>
+                </div>
 
-                        <div class="col-lg-4 col-md-6 footer-newsletter">
-                            <div class="social-links mt-xxl-5">
-                                <a href="#" target="_blank" class="instagram"
-                                    ><i class="bx bxl-instagram"></i
-                                ></a>
-                                <a href="#" target="_blank" class="facebook"
-                                    ><i class="bx bxl-facebook"></i
-                                ></a>
-                                <a href="https://wa.me/628179733211" target="_blank" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
-                                <a href="mailto:ryuagusta@gmail.com" class="google"><i class="bx bxl-google"></i></a>
-                                <a href="#" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-                            </div>
-                        </div>
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <div class="social-links mt-xxl-5">
+                        <a href="https://www.instagram.com/mtsalhudy2019/?hl=id" target="_blank" class="instagram"
+                            ><i class="bx bxl-instagram"></i
+                        ></a>
+                        <a href="https://www.facebook.com/mialhudy/?locale=id_ID" target="_blank" class="facebook"
+                            ><i class="bx bxl-facebook"></i
+                        ></a>
+                        <a href="https://wa.me/628179733211" target="_blank" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
+                        <a href="mailto:yayasansinhudy@gmail.com" class="google"><i class="bx bxl-google"></i></a>
+                        <a href="https://www.youtube.com/channel/UCL_J8g2vIvwkcIiL8WCjtaQ" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="container">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>Al-Hudy</span></strong>. All Rights Reserved
-                </div>
-            </div>
-        </footer>
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Al-Hudy</span></strong
+            >. All Rights Reserved
+        </div>
+    </div>
+</footer>
 
 
   <!-- End Footer -->

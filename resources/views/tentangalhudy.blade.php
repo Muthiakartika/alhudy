@@ -18,11 +18,11 @@
 
   <!-- Vendor CSS Files -->
   <link href="{{asset('master/assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/aos/aos.css" rel="stylesheet')}}">
+  <link href="{{asset('master/assets/vendor/aos/aos.css')}}" rel="stylesheet">
   <link href="{{asset('master/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/bootstrap-icons/bootstrap-icons.cs')}}" rel="stylesheet">
+  <link href="{{asset('master/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
   <link href="{{asset('master/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/remixicon/remixicon.css" rel=')}}" rel="stylesheet">
+  <link href="{{asset('master/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
   <link href="{{asset('master/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
 
@@ -45,7 +45,7 @@
 			<li><a class="nav-link scrollto active" href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
 			<li><a href="{{route('visi-misi')}}">Visi & Misi</a></li>
 			<li><a href="{{route('galeri')}}">Galeri</a></li>
-			<li><a href="#">Kontak Kami</a></li>
+			<li><a href="{{route('kontak-kami')}}">Kontak Kami</a></li>
 			<li><a href="{{ route('login') }}">Login</a></li>
 
 		</ul>
@@ -79,12 +79,10 @@
                             <img src="{{asset('storage/' .$dataGuru->foto)}}" class="img-fluid" style="height: 401px; width: 301px;"
                             alt="tenaga pendidik">
                             <div class="member-content">
-                                <h3><b>{{$dataGuru->jabatan}}</b></h3>
-                                <h4>{{$dataGuru->nama}}</h4>
+                                <h4><b>{{$dataGuru->jabatan}}</b></h4>
+                                <h5>{{$dataGuru->nama}}</h5>
                             <div class="social">
-                            <a href="https://wa.me/628179733211"><i class="bi bi-whatsapp"></i></a>
-                            <a href="https://www.instagram.com/_.rea._._/"><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
+                            <a href="https://wa.me/{{ str_replace(['+', ' ', '-'], '', $dataGuru->noHp) }}"><i class="bi bi-whatsapp"></i></a>
                             </div>
                         </div>
                         </div>
@@ -96,7 +94,7 @@
         <div class="container" data-aos="fade-up">
             <div class="row"   data-aos="zoom-in" data-aos-delay="100">
                 <div class="card mb-3">
-                <img class="card-img-top" src="https://source.unsplash.com/1260x272?error" alt="Data Tidak Ditemukan">
+                <img class="card-img-top" src="{{asset('master/images/file-error.jpg')}}" alt="Data Tidak Ditemukan" width="1260" height="272">
                 <div class="card-body">
                     <center>
                         <h1 class="card-title">Data Tidak Ditemukan</h1>
@@ -130,9 +128,9 @@
                             <div class="footer-info">
                                 <img src="{{asset('master/images/sidelogo.png')}}" alt="" width="150" />
                                 <p>
-                                    <br />
+                                    <br/>
                                     <strong>Phone:</strong> +62 8179 7332 11<br />
-                                    <strong>Email:</strong> testing@gmail.com<br />
+                                    <strong>Email:</strong> yayasansinhudy@gmail.com<br />
                                 </p>
                             </div>
                         </div>
@@ -150,7 +148,7 @@
                             <h4>Al-Hudy</h4>
                             <ul>
                                 <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeri')}}">Galeri</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Kontak Kami</a></li>
+                                <li><i class="bx bx-chevron-right"></i><a href="{{route('kontak-kami')}}">Kontak Kami</a></li>
                                 <li>
                                     <i class="bx bx-chevron-right"></i>
                                     <a href="{{route('login')}}">Login</a>
@@ -160,15 +158,15 @@
 
                         <div class="col-lg-4 col-md-6 footer-newsletter">
                             <div class="social-links mt-xxl-5">
-                                <a href="#" target="_blank" class="instagram"
+                                <a href="https://www.instagram.com/mtsalhudy2019/?hl=id" target="_blank" class="instagram"
                                     ><i class="bx bxl-instagram"></i
                                 ></a>
-                                <a href="#" target="_blank" class="facebook"
+                                <a href="https://www.facebook.com/mialhudy/?locale=id_ID" target="_blank" class="facebook"
                                     ><i class="bx bxl-facebook"></i
                                 ></a>
                                 <a href="https://wa.me/628179733211" target="_blank" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
-                                <a href="mailto:ryuagusta@gmail.com" class="google"><i class="bx bxl-google"></i></a>
-                                <a href="#" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                                <a href="mailto:yayasansinhudy@gmail.com" class="google"><i class="bx bxl-google"></i></a>
+                                <a href="https://www.youtube.com/channel/UCL_J8g2vIvwkcIiL8WCjtaQ" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
                             </div>
                         </div>
                     </div>

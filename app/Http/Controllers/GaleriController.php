@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Galeri;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
@@ -15,9 +16,14 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        $kegiatan = Galeri::all();
-        return view('galeri.index', compact('kegiatan'))
-        ->with('i', (request()->input('page', 1)-1)*5);
+        if(Auth::user()->role == 'admin'){
+            $kegiatan = Galeri::all();
+            return view('galeri.index', compact('kegiatan'))
+            ->with('i', (request()->input('page', 1)-1)*5);
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
+
     }
 
     /**
@@ -27,7 +33,11 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        return view('galeri.create');
+        if(Auth::user()->role == 'admin'){
+            return view('galeri.create');
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -38,27 +48,36 @@ class GaleriController extends Controller
      */
     public function store(Request $request)
     {
-         // memvalidasi inputan
-         $request->validate([
-            'judul' => 'required',
-            'keterangan' => 'required',
-            'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        if(Auth::user()->role == 'admin'){
+            // memvalidasi inputan
+            $request->validate([
+                'judul' => 'required',
+                'keterangan' => 'required',
+                'foto.*' => 'image|mimes:jpeg,png,jpg,gif'
+            ]);
 
-        // ddd($request);
-        //Validasi jika ada foto yang dimasukkan
-        if($request->file('foto')){
-            $request->foto = $request->file('foto')->store('galeri_foto');
+            // ddd($request);
+
+            if ($request->hasFile('foto')) {
+                $uploadedImages = [];
+                foreach ($request->file('foto') as $image) {
+                    $path = $image->store('galeri_foto');
+                    $uploadedImages[] = ['path' => $path];
+                }
+            }
+
+            $galeri = new Galeri;
+            $galeri->judul = $request->judul;
+            $galeri->keterangan= $request->keterangan;
+            $galeri->foto = json_encode($uploadedImages);
+            $galeri->save();
+
+            return redirect()->route('kegiatan.index')
+            ->with('success','Data kegiatan berhasil ditambahkan');
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
         }
-
-        Galeri::create([
-            'judul' => $request->judul,
-            'keterangan'=> $request->keterangan,
-            'foto' => $request->foto
-        ]);
-
-        return redirect()->route('kegiatan.index')
-        ->with('success','Data kegiatan berhasil ditambahkan');
     }
 
     /**
@@ -69,9 +88,14 @@ class GaleriController extends Controller
      */
     public function show($id)
     {
-        $galeri = Galeri::findOrFail($id);
-        // ddd($galeri);
-        return view('galeri.show', compact('galeri'));
+        if(Auth::user()->role == 'admin'){
+            $galeri = Galeri::findOrFail($id);
+            return view('galeri.show', compact('galeri'));
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
+
     }
 
     /**
@@ -82,8 +106,13 @@ class GaleriController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $galeri = Galeri::findOrFail($id);
-        return view('galeri.edit', compact('galeri'));
+        if(Auth::user()->role == 'admin'){
+            $galeri = Galeri::findOrFail($id);
+            return view('galeri.edit', compact('galeri'));
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
+
     }
 
     /**
@@ -95,32 +124,50 @@ class GaleriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // memvalidasi inputan
+        if(Auth::user()->role == 'admin'){
+
+            // Memvalidasi inputan
         $request->validate([
             'judul' => 'required',
             'keterangan' => 'required',
-            'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'foto.*' => 'image|mimes:jpeg,png,jpg,gif'
         ]);
 
-        // ddd($request);
-        //Validasi jika ada foto yang dimasukkan
-        if($request->file('foto')){
-            if($request->oldImage)
-            {
-                Storage::delete($request->oldImage);
+        // Inisialisasi array untuk menyimpan path foto yang diunggah
+        $uploadedImages = [];
+
+        // Validasi jika ada foto yang dimasukkan
+        if ($request->hasFile('foto')) {
+            foreach ($request->file('foto') as $image) {
+                $path = $image->store('galeri_foto');
+                $uploadedImages[] = ['path' => $path];
             }
-            $request->foto = $request->file('foto')->store('galeri_foto');
         }
 
         $galeri = Galeri::findOrFail($id);
+
+        // Mengupdate atribut non-foto
         $galeri->judul = $request->judul;
         $galeri->keterangan = $request->keterangan;
-        $galeri->foto = $request->foto;
+
+        // Mengupdate atribut foto hanya jika ada foto yang diunggah
+        if (!empty($uploadedImages)) {
+            // Hapus foto lama jika ada
+            foreach (json_decode($galeri->foto, true) as $oldImage) {
+                Storage::delete($oldImage['path']);
+            }
+            // Simpan foto baru
+            $galeri->foto = json_encode($uploadedImages);
+        }
+
         $galeri->timestamps;
         $galeri->save();
 
         return redirect()->route('kegiatan.index')
-        ->with('success','Data kegiatan berhasil diupdate');
+            ->with('success','Data kegiatan berhasil diupdate');
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -131,17 +178,21 @@ class GaleriController extends Controller
      */
     public function destroy($id)
     {
-        $galeri = Galeri::findOrFail($id);
-        // Menghapus foto yang lama di storage
-        if($galeri->foto)
-        {
-            Storage::delete('galeri_foto/' .$galeri->foto);
-        }
+        if(Auth::user()->role == 'admin'){
+            $galeri = Galeri::findOrFail($id);
+            // Menghapus setiap foto di storage
+            if ($galeri->foto) {
+                foreach (json_decode($galeri->foto, true) as $oldImage) {
+                    Storage::delete($oldImage['path']);
+                }
+            }
+            // Menghapus data galeri
+            $galeri->delete();
+            return redirect()->route('kegiatan.index')->with('success', 'Data kegiatan berhasil dihapus');
 
-        // Menghapus data
-        $galeri->delete();
-        return redirect()->route('kegiatan.index')
-        ->with('success','Data kegiatan berhasil dihapus');
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     public function showData()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Murid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MuridController extends Controller
@@ -16,9 +17,14 @@ class MuridController extends Controller
      */
     public function index()
     {
-        $dataMurid = Murid::with('kelas')->get();
-        return view('murid.index', compact('dataMurid'))
-        ->with('i', (request()->input('page', 1)-1)*5);
+        if(Auth::user()->role == 'admin'){
+            $dataMurid = Murid::with('kelas')->get();
+            return view('murid.index', compact('dataMurid'))
+            ->with('i', (request()->input('page', 1)-1)*5);
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -28,8 +34,13 @@ class MuridController extends Controller
      */
     public function create()
     {
-        $dataKelas = Kelas::all();
-        return view('murid.create', compact('dataKelas'));
+        if(Auth::user()->role == 'admin'){
+            $dataKelas = Kelas::all();
+            return view('murid.create', compact('dataKelas'));
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -40,28 +51,33 @@ class MuridController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'kelasId' => 'required',
-            'nisn' => 'required',
-            'tempat' => 'required',
-            'tglLahir' => 'required',
-            'umur' => 'required',
-            'alamat' => 'required',
-            'noHp' => 'required',
-            'status' => 'required',
-            'gender' => 'required',
-            'kebKhusus' => 'required',
-            'disabilitas' => 'required',
-            'kip' => '',
-            'namaAyah' => 'required',
-            'namaIbu' => 'required',
-            'namaWali' => ''
-        ]);
+        if(Auth::user()->role == 'admin'){
+            $request->validate([
+                'nama' => 'required',
+                'kelasId' => 'required',
+                'nisn' => 'required',
+                'tempat' => 'required',
+                'tglLahir' => 'required',
+                'umur' => 'required',
+                'alamat' => 'required',
+                'noHp' => '',
+                'status' => 'required',
+                'gender' => 'required',
+                'kebKhusus' => 'required',
+                'disabilitas' => 'required',
+                'kip' => '',
+                'namaAyah' => 'required',
+                'namaIbu' => 'required',
+                'namaWali' => ''
+            ]);
 
-        Murid::create($request->all());
-        return redirect()->route('murid.index')
-        ->with('success','Data siswa berhasil ditambahkan');
+            Murid::create($request->all());
+            return redirect()->route('murid.index')
+            ->with('success','Data siswa berhasil ditambahkan');
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -72,8 +88,12 @@ class MuridController extends Controller
      */
     public function show(Murid $murid)
     {
-        $murid->load('kelas');
-        return view('murid.show', compact('murid'));
+        if(Auth::user()->role == 'admin'){
+            $murid->load('kelas');
+            return view('murid.show', compact('murid'));
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -84,8 +104,12 @@ class MuridController extends Controller
      */
     public function edit(Murid $murid)
     {
-        $dataKelas = DB::table('kelas')->get();
-        return view('murid.edit', compact('murid', 'dataKelas'));
+        if(Auth::user()->role == 'admin'){
+            $dataKelas = DB::table('kelas')->get();
+            return view('murid.edit', compact('murid', 'dataKelas'));
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -97,28 +121,33 @@ class MuridController extends Controller
      */
     public function update(Request $request, Murid $murid)
     {
-        $request->validate([
-            'nama' => '',
-            'kelasId' => '',
-            'nisn' => '',
-            'tempat' => '',
-            'tglLahir' => '',
-            'umur' => '',
-            'alamat' => '',
-            'noHp' => '',
-            'status' => '',
-            'gender' => '',
-            'kebKhusus' => '',
-            'disabilitas' => '',
-            'kip' => '',
-            'namaAyah' => '',
-            'namaIbu' => '',
-            'namaWali' => ''
-        ]);
+        if(Auth::user()->role == 'admin'){
+            $request->validate([
+                'nama' => '',
+                'kelasId' => '',
+                'nisn' => '',
+                'tempat' => '',
+                'tglLahir' => '',
+                'umur' => '',
+                'alamat' => '',
+                'noHp' => '',
+                'status' => '',
+                'gender' => '',
+                'kebKhusus' => '',
+                'disabilitas' => '',
+                'kip' => '',
+                'namaAyah' => '',
+                'namaIbu' => '',
+                'namaWali' => ''
+            ]);
 
-        $murid->update($request->all());
-        return redirect()->route('murid.index')
-        ->with('success','Data siswa berhasil diupdate');
+            $murid->update($request->all());
+            return redirect()->route('murid.index')
+            ->with('success','Data siswa berhasil diupdate');
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -129,8 +158,13 @@ class MuridController extends Controller
      */
     public function destroy(Murid $murid)
     {
-        $murid->delete();
-        return redirect()->route('murid.index')
-        ->with('success','Data siswa berhasil dihapus');
+        if(Auth::user()->role == 'admin'){
+            $murid->delete();
+            return redirect()->route('murid.index')
+            ->with('success','Data siswa berhasil dihapus');
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
+
     }
 }

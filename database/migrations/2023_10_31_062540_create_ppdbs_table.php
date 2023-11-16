@@ -20,10 +20,10 @@ class CreatePpdbsTable extends Migration
             $table->string('tempatLahir');
             $table->string('tglLahir');
             $table->enum('gender',['laki_laki', 'perempuan']);
-            $table->string('kelas');
+            $table->enum('kelas',['1','2','3','4','5','6']);
+            $table->enum('kelasParalel',['lama', 'baru']);
             $table->string('kelasAwal')->nullable();
             $table->string('sekolahLama')->nullable();
-            $table->string('sekolahBaru')->nullable();
             $table->string('golDarah');
             $table->string('usia');
             $table->string('tinggi');
@@ -31,9 +31,9 @@ class CreatePpdbsTable extends Migration
             $table->string('jumSaudara');
             $table->string('anakNo');
             $table->string('saudaraNo');
-            $table->string('npsn');
+            $table->string('npsn')->nullable();
             $table->string('asalSekolah');
-            $table->string('noIjazah');
+            $table->string('noIjazah')->nullable();
             $table->string('tglLulus');
             $table->string('noKK');
             $table->string('alamat');
@@ -42,8 +42,8 @@ class CreatePpdbsTable extends Migration
             $table->string('kota');
             $table->string('prov');
             $table->string('kodePos');
-            $table->string('jarakRumah');
-            $table->string('transport');
+            $table->string('jarakRumah')->nullable();
+            $table->string('transport')->nullable();
             $table->string('namaAyah');
             $table->string('nikAyah');
             $table->string('pendidikanAyah');

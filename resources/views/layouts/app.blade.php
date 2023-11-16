@@ -30,7 +30,7 @@
         <!-- Trix Editor -->
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
         <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
-        
+
         <style>
             trix-toolbar [data-trix-button-group="file-tools"]{
                 display: none;
@@ -86,14 +86,14 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{__('Apakah anda mau keluar')}}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{{__('Keluar')}}</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">{{__('Pilih Keluar')}}</div>
+                    <div class="modal-body">{{__('Apakah Anda Ingin Keluar?')}}</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">{{__('cancel')}}</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">{{__('Batal')}}</button>
                         <a class="btn btn-success" type="button" data-dismiss="modal" href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Keluar') }}
                         </a>
@@ -132,5 +132,6 @@
                 }
             }
         </script>
+
     </body>
 </html>

@@ -23,7 +23,7 @@ class CreateMuridsTable extends Migration
             $table->date('tglLahir');
             $table->string('umur');
             $table->string('alamat');
-            $table->string('noHp');
+            $table->string('noHp')->nullable();
             $table->enum('status',['aktif', 'tidak-aktif']);
             $table->enum('gender',['laki_laki', 'perempuan']);
             $table->enum('kebKhusus',['iya', 'tidak']);

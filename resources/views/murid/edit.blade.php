@@ -5,9 +5,19 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{session('error')}}
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         @endif
 
@@ -24,7 +34,7 @@
                     @method('PUT')
 
                     <div class="form-group">
-                        <label for="namaGuru">Nama Siswa</label>
+                        <label for="namaGuru">Nama Siswa<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('nama') is-invalid @enderror"
                         id="namaSiswa" name="nama" placeholder="Nama Siswa" value="{{$murid->nama}}">
 
@@ -35,7 +45,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">Kelas</label>
+                        <label for="jabatan">Kelas<span class="text-danger">*</span></label>
                         <select type="text" class="form-control form-control-user @error('kelasId')
                             is-invalid @enderror" name="kelasId">
                             <option disabled selected>{{__('Pilih Kelas')}}</option>
@@ -53,7 +63,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">NISN</label>
+                        <label for="jabatan">NISN<span class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('nisn') is-invalid @enderror"
                         id="niyp" name="nisn" value="{{$murid->nisn}}">
 
@@ -65,7 +75,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">NIK</label>
+                        <label for="jabatan">NIK<span class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('nik') is-invalid @enderror"
                         id="niyp" name="nik" value="{{$murid->nik}}">
 
@@ -77,7 +87,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="namaGuru">Tempat Lahir</label>
+                        <label for="namaGuru">Tempat Lahir<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('tempat') is-invalid @enderror"
                         id="namaSiswa" name="tempat" value="{{$murid->tempat}}">
 
@@ -89,7 +99,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="namaGuru">Tanggal Lahir</label>
+                        <label for="namaGuru">Tanggal Lahir<span class="text-danger">*</span></label>
                         <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
                         id="namaSiswa" name="tglLahir" value="{{$murid->tglLahir}}">
 
@@ -101,7 +111,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="namaGuru">Umur</label>
+                        <label for="namaGuru">Umur<span class="text-danger">*</span></label>
                         <input type="number" maxlength="2" class="form-control @error('umur') is-invalid @enderror"
                         id="namaSiswa" name="umur" value="{{$murid->umur}}">
 
@@ -113,8 +123,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="namaGuru">Alamat</label>
-                        <input type="number" maxlength="2" class="form-control @error('umur') is-invalid @enderror"
+                        <label for="namaGuru">Alamat<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('umur') is-invalid @enderror"
                         id="namaSiswa" name="alamat" value="{{$murid->alamat}}">
 
                         @error('umur')
@@ -137,7 +147,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">Status</label>
+                        <label for="jabatan">Status<span class="text-danger">*</span></label>
                         <select type="text" class="form-control form-control-user @error('status')
                         is-invalid @enderror" name="status">
                             <option value="" selected disabled>--- PILIH ---</option>
@@ -153,7 +163,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">Jenis Kelamin</label>
+                        <label for="jabatan">Jenis Kelamin<span class="text-danger">*</span></label>
                         <select type="text" class="form-control form-control-user @error('gender')
                         is-invalid @enderror" name="gender">
                             <option value="" selected disabled>--- PILIH ---</option>
@@ -169,12 +179,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">Kebutuhan Khusus</label>
+                        <label for="jabatan">Kebutuhan Khusus<span class="text-danger">*</span></label>
                         <select type="text" class="form-control form-control-user @error('kebKhusus')
                         is-invalid @enderror" name="kebKhusus">
                             <option value="" selected disabled>--- PILIH ---</option>
-                            <option value="iya" {{ old('kenKhusus') == 'iya' || (isset($murid) && $murid->kenKhusus == 'iya') ? 'selected' : '' }}>Ada</option>
-                            <option value="tidak" {{ old('kenKhusus') == 'tidak' || (isset($murid) && $murid->kenKhusus == 'tidak') ? 'selected' : '' }}>Tidak Ada</option>
+                            <option value="iya" {{ old('kebKhusus') == 'iya' || (isset($murid) && $murid->kebKhusus == 'iya') ? 'selected' : '' }}>Ada</option>
+                            <option value="tidak" {{ old('kebKhusus') == 'tidak' || (isset($murid) && $murid->kebKhusus == 'tidak') ? 'selected' : '' }}>Tidak Ada</option>
                         </select>
 
                         @error('kebKhusus')
@@ -185,7 +195,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">Disabilitas</label>
+                        <label for="jabatan">Disabilitas<span class="text-danger">*</span></label>
                         <select type="text" class="form-control form-control-user @error('disabilitas')
                         is-invalid @enderror" name="disabilitas">
                             <option value="" selected disabled>--- PILIH ---</option>
@@ -215,7 +225,7 @@
 
 
                     <div class="form-group">
-                        <label for="namaGuru">Nama Ayah Kandung</label>
+                        <label for="namaGuru">Nama Ayah Kandung<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('namaAyah') is-invalid @enderror"
                         id="namaSiswa" name="namaAyah" value="{{$murid->namaAyah}}">
 
@@ -226,7 +236,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="namaGuru">Nama Ibu Kandung</label>
+                        <label for="namaGuru">Nama Ibu Kandung<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('namaIbu') is-invalid @enderror"
                         id="namaSiswa" name="namaIbu" value="{{$murid->namaIbu}}">
 
@@ -250,7 +260,7 @@
                     </div>
 
                     <div class="form-group">
-                        <a class="btn btn-primary" href="{{route('guru.index')}}">Kembali</a>
+                        <a class="btn btn-primary" href="{{route('murid.index')}}">Kembali</a>
                         <input class="btn btn-success" type="submit" value="Kirim">
                     </div>
                 </form>

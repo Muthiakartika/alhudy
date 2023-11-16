@@ -21,9 +21,8 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Nav Item -->
-        <li class="nav-item {{ Request::is('guru') || Request::is('guru/*') ? 'active' : '' }}">
-            <a class="nav-link "
-                href="#">
+        <li class="nav-item {{ Request::is('ppdb') || Request::is('ppdb/*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{route('ppdb.index')}}">
                 <i class="fas fa-users"></i>
                 <span>Data PPDB</span></a>
         </li>
@@ -52,7 +51,7 @@
     @elseif (auth()->user()->role =='ortu')
         <!-- Nav Item - Dashboard -->
         <li class="nav-item {{ Request::is('ppdb-dashboard') ? 'active' : '' }}">
-            <a href="{{route('ppdb.index')}}" class="nav-link ">
+            <a href="{{route('ortu.index')}}" class="nav-link ">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -68,28 +67,28 @@
 
         @if ($dataSiswa < 1)
 
-        <!-- Nav Item -->
-        <li class="nav-item">
-            <a class="nav-link " href="#">
-                <i class="fas fa-user-graduate"></i>
-                <span>Pendaftaran Siswa</span>
-            </a>
-        </li>
+            <!-- Nav Item -->
+            <li class="nav-item {{ Request::is('ppdb-dashboard') || Request::is('ppdb-dashboard/*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('ppdb.create')}}">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Pendaftaran Siswa</span>
+                </a>
+            </li>
         @else
-        <!-- Nav Item -->
-        <li class="nav-item">
-            <a class="nav-link " href="#">
-                <i class="fas fa-user-graduate"></i>
-                <span>Pendaftaran Siswa</span>
-            </a>
-        </li>
-        <!-- Nav Item -->
-        <li class="nav-item">
-            <a class="nav-link " href="{{asset('admin/file/surat pernyataan.pdf')}}">
-                <i class="fas fa-book"></i>
-                <span>Surat Pernyataan</span>
-            </a>
-        </li>
+            <!-- Nav Item -->
+            <li class="nav-item {{ Request::is('ppdb') || Request::is('ppdb/*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('ppdb.index')}}">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Pendaftaran Siswa</span>
+                </a>
+            </li>
+            <!-- Nav Item -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{asset('admin/file/surat pernyataan.pdf')}}">
+                    <i class="fas fa-book"></i>
+                    <span>Surat Pernyataan</span>
+                </a>
+            </li>
         @endif
     @endif
 <!-- Divider -->

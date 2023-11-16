@@ -4,11 +4,19 @@
 
     <div class="container-fluid">
 
-        <!-- Page Heading -->
-
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{session('error')}}
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         @endif
 
@@ -23,7 +31,7 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="namaGuru">Nama Guru</label>
+                        <label for="namaGuru">Nama Guru<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                         id="namaGuru" name="nama" value="{{$guru->nama}}">
 
@@ -34,7 +42,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">Jabatan</label>
+                        <label for="jabatan">Jabatan<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('jabatan') is-invalid @enderror"
                         id="jabatan" name="jabatan" value="{{$guru->jabatan}}">
 
@@ -45,7 +53,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">Tempat Lahir</label>
+                        <label for="jabatan">Tempat Lahir<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('tempat') is-invalid @enderror"
                         id="tempat" name="tempat" value="{{$guru->tempat}}">
 
@@ -56,7 +64,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">Tanggal Lahir</label>
+                        <label for="jabatan">Tanggal Lahir<span class="text-danger">*</span></label>
                         <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
                         id="tglLahir" name="tglLahir" value="{{$guru->tglLahir}}">
 
@@ -67,7 +75,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">NIPY</label>
+                        <label for="jabatan">NIPY<span class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('nipy') is-invalid @enderror"
                         id="niyp" name="nipy" value="{{$guru->nipy}}">
 
@@ -79,9 +87,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">No Handphone</label>
+                        <label for="jabatan">No Handphone<span class="text-danger">*</span></label>
                         <input type="number" minlength="10" maxlength="12" class="form-control @error('noHp') is-invalid @enderror"
                         id="noHp" name="noHp" value="{{$guru->noHp}}">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Format: 6281xxxxx
+                         </small>
 
                         @error('noHp')
                             <span class="invalid-feedback" role="alert">
@@ -91,7 +102,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>File Uplaod</label>
+                        <label>File Uplaod<span class="text-danger">*</span></label>
                         <input type="hidden" name="oldImage" value="{{$guru->foto}}">
                         @if($guru->foto)
                             <img src="{{asset('storage/' .$guru->foto)}}" class="img-preview

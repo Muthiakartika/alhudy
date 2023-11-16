@@ -19,15 +19,12 @@
 
   <!-- Vendor CSS Files -->
   <link href="{{asset('master/assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/aos/aos.css" rel="stylesheet')}}">
+  <link href="{{asset('master/assets/vendor/aos/aos.css')}}" rel="stylesheet">
   <link href="{{asset('master/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/bootstrap-icons/bootstrap-icons.cs')}}" rel="stylesheet">
+  <link href="{{asset('master/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
   <link href="{{asset('master/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-  <link href="{{asset('master/assets/vendor/remixicon/remixicon.css" rel=')}}" rel="stylesheet">
+  <link href="{{asset('master/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
   <link href="{{asset('master/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
-
-
-
 
   <!-- Template Main CSS File -->
   <link href="{{asset('master/assets/css/style.css')}}" rel="stylesheet">
@@ -36,72 +33,96 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+<header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-lg-between">
-	  <h1 class="logo me-auto me-lg-0">
-		<a href="/"><img src="{{asset('master/images/sidelogo.png')}}"></a>
-	  </h1>
+        <h1 class="logo me-auto me-lg-0">
+            <a href="/"><img src="{{asset('master/images/sidelogo.png')}}"></a>
+        </h1>
 
-      <nav id="navbar" class="navbar order-last order-lg-0">
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
-			<li><a href="{{route('visi-misi')}}">Visi & Misi</a></li>
-			<li><a class="nav-link scrollto active" href="{{route('galeri')}}">Galeri</a></li>
-			<li><a href="#">Kontak Kami</a></li>
-			<li><a href="{{ route('login') }}">Login</a></li>
-
-		</ul>
-		<i class="bx bx-menu mobile-nav-toggle"></i>
-	  </nav>
+        <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
+                    <li><a href="{{route('visi-misi')}}">Visi & Misi</a></li>
+                    <li><a class="nav-link scrollto active" href="{{route('galeri')}}">Galeri</a></li>
+                    <li><a href="{{route('kontak-kami')}}">Kontak Kami</a></li>
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                </ul>
+            <i class="bx bx-menu mobile-nav-toggle"></i>
+        </nav>
 
       <!-- <a href="login.html" class="get-started-btn">Login</a> -->
     </div>
-  </header><!-- End Header -->
+</header><!-- End Header -->
 
-
-
-  <main id="main">
+<main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
-      <div class="container" data-aos="fade-in">
-		<section id="social">
-			<div class="section-title row gy-4 mt-5 justify-content-center">
-				<h2><u>Galeri aktivitas</u></h2>
-			</div>
-		</section>
-      </div>
+        <div class="container" data-aos="fade-in">
+            <section id="social">
+                <div class="section-title row gy-4 mt-5 justify-content-center">
+                    <h2><u>Galeri aktivitas</u></h2>
+                </div>
+            </section>
+        </div>
     </div>
     <!-- End Breadcrumbs -->
 
     <!-- ======= Events Section ======= -->
-
     <section id="events" class="events">
+
         @if ($galeri->count())
-            @foreach ($galeri as $dataGaleri )
-                <div class="container" data-aos="fade-up">
-                    <div class="row">
-                        <div class="col-md-6 d-flex align-items-stretch">
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="{{asset('storage/' .$dataGaleri->foto)}}" alt="..." style="height: 477px; width: 636px;">
+            <div class="container" data-aos="fade-up">
+                <div class="row">
+                    @foreach ($galeri as $dataGaleri )
+                    <div class="col-md-6 d-flex align-items-stretch">
+                        <div class="card">
+                            <div class="card-img">
+                                <div id="carouselExample{{ $dataGaleri->id }}" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @php $firstImage = true; @endphp
+                                        @foreach (json_decode($dataGaleri->foto, true) as $oldImage)
+                                            @if (is_array($oldImage))
+                                                @foreach ($oldImage as $image)
+                                                    <div class="carousel-item @if($firstImage) active @endif">
+                                                        <img src="{{ asset('storage/' . $image) }}" class="d-block w-100" alt="Al Hudy Image">
+                                                    </div>
+                                                    @php $firstImage = false; @endphp
+                                                @endforeach
+                                            @else
+                                                <div class="carousel-item @if($firstImage) active @endif">
+                                                    <img src="{{ asset('storage/' . $oldImage) }}" class="d-block w-100" alt="Al Hudy Image">
+                                                </div>
+                                                @php $firstImage = false; @endphp
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{ $dataGaleri->id }}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{ $dataGaleri->id }}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="">{{$dataGaleri->judul}}</a></h5>
-                                    <p class="fst-italic text-center">{{$dataGaleri->created_at->format('l, j F Y')}}</p>
-                                    <p class="card-text text-center">{!! $dataGaleri->keterangan !!}</p>
-                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="">{{$dataGaleri->judul}}</a></h5>
+                                <p class="fst-italic text-center">{{$dataGaleri->created_at->format(' j F Y')}}</p>
+                                <p class="card-text">{!! $dataGaleri->keterangan !!}</p>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
         @else
             <div class="container" data-aos="fade-up">
                 <div class="row"   data-aos="zoom-in" data-aos-delay="100">
                     <div class="card mb-3">
-                    <img class="card-img-top" src="https://source.unsplash.com/1260x272?error" alt="Data Tidak Ditemukan">
+                    <img class="card-img-top" src="{{asset('master/images/file-error.jpg')}}" alt="Data Tidak Ditemukan" width="1260" height="272">
                     <div class="card-body">
                         <center>
                             <h1 class="card-title">Data Tidak Ditemukan</h1>
@@ -111,100 +132,92 @@
                     </div>
                 </div>
             </div>
-
-            <div class="breadcrumbs">
-                <div class="container" data-aos="fade-in">
-                    <section id="social">
-                        <div class="section-title row gy-4 mt-5 justify-content-center">
-
-                        </div>
-                    </section>
-                </div>
-            </div>
         @endif
+        <!-- </div> -->
     </section><!-- End Events Section -->
-  </main><!-- End #main -->
+</main><!-- End #main -->
 
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-info">
+                        <img src="{{asset('master/images/sidelogo.png')}}" alt="" width="150" />
+                        <p>
+                            <br/>
+                            <strong>Phone:</strong> +62 8179 7332 11<br />
+                            <strong>Email:</strong> yayasansinhudy@gmail.com<br />
+                        </p>
+                    </div>
+                </div>
 
-  <footer id="footer">
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-info">
-                                <img src="{{asset('master/images/sidelogo.png')}}" alt="" width="150" />
-                                <p>
-                                    <br />
-                                    <strong>Phone:</strong> +62 8179 7332 11<br />
-                                    <strong>Email:</strong> testing@gmail.com<br />
-                                </p>
-                            </div>
-                        </div>
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Al-Hudy</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('visi-misi')}}">Visi & Misi</a></li>
+                    </ul>
+                </div>
 
-                        <div class="col-lg-2 col-md-6 footer-links">
-                            <h4>Al-Hudy</h4>
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{{route('tenaga-pendidik')}}">Direktori Guru dan Tenaga Kependidikan</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{{route('visi-misi')}}">Visi & Misi</a></li>
-                            </ul>
-                        </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Al-Hudy</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeri')}}">Galeri</a></li>
+                        <li><i class="bx bx-chevron-right"></i><a href="{{route('kontak-kami')}}">Kontak Kami</a></li>
+                        <li>
+                            <i class="bx bx-chevron-right"></i>
+                            <a href="{{route('login')}}">Login</a>
+                        </li>
+                    </ul>
+                </div>
 
-                        <div class="col-lg-3 col-md-6 footer-links">
-                            <h4>Al-Hudy</h4>
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{{route('galeri')}}">Galeri</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Kontak Kami</a></li>
-                                <li>
-                                    <i class="bx bx-chevron-right"></i>
-                                    <a href="{{route('login')}}">Login</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 footer-newsletter">
-                            <div class="social-links mt-xxl-5">
-                                <a href="#" target="_blank" class="instagram"
-                                    ><i class="bx bxl-instagram"></i
-                                ></a>
-                                <a href="#" target="_blank" class="facebook"
-                                    ><i class="bx bxl-facebook"></i
-                                ></a>
-                                <a href="https://wa.me/628179733211" target="_blank" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
-                                <a href="mailto:ryuagusta@gmail.com" class="google"><i class="bx bxl-google"></i></a>
-                                <a href="#" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-                            </div>
-                        </div>
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <div class="social-links mt-xxl-5">
+                        <a href="https://www.instagram.com/mtsalhudy2019/?hl=id" target="_blank" class="instagram"
+                            ><i class="bx bxl-instagram"></i
+                        ></a>
+                        <a href="https://www.facebook.com/mialhudy/?locale=id_ID" target="_blank" class="facebook"
+                            ><i class="bx bxl-facebook"></i
+                        ></a>
+                        <a href="https://wa.me/628179733211" target="_blank" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
+                        <a href="mailto:yayasansinhudy@gmail.com" class="google"><i class="bx bxl-google"></i></a>
+                        <a href="https://www.youtube.com/channel/UCL_J8g2vIvwkcIiL8WCjtaQ" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="container">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>Al-Hudy</span></strong
-                    >. All Rights Reserved
-                </div>
-            </div>
-        </footer>
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Al-Hudy</span></strong
+            >. All Rights Reserved
+        </div>
+    </div>
+</footer>
+
   <!-- End Footer -->
 
 
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="{{asset('master/assets/vendor/purecounter/purecounter.js')}}"></script>
-  <script src="{{asset('master/assets/vendor/aos/aos.js')}}"></script>
-  <script src="{{asset('master/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('master/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-  <script src="{{asset('master/assets/vendor/php-email-form/validate.js')}}"></script>
+   <!-- Vendor JS Files -->
+   <script src="{{asset('master/assets/vendor/purecounter/purecounter.js')}}"></script>
+   <script src="{{asset('master/assets/vendor/aos/aos.js')}}"></script>
+   <script src="{{asset('master/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+   <script src="{{asset('master/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+   <script src="{{asset('master/assets/vendor/php-email-form/validate.js')}}"></script>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-  <!-- Template Main JS File -->
-  <script src="{{asset('master/assets/js/main.js')}}"></script>
+   <!-- Template Main JS File -->
+   <script src="{{asset('master/assets/js/main.js')}}"></script>
+
 
 </body>
 

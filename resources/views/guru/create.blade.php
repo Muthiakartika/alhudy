@@ -4,11 +4,19 @@
 
     <div class="container-fluid">
 
-        <!-- Page Heading -->
-
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{session('error')}}
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         @endif
 
@@ -22,7 +30,7 @@
                 <form method="POST" action="{{route('guru.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="namaGuru">Nama Guru</label>
+                        <label for="namaGuru">Nama Guru<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                         id="namaGuru" name="nama">
 
@@ -33,7 +41,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">Jabatan</label>
+                        <label for="jabatan">Jabatan<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('jabatan') is-invalid @enderror"
                         id="jabatan" name="jabatan">
 
@@ -44,7 +52,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">Tempat Lahir</label>
+                        <label for="jabatan">Tempat Lahir<span class="text-danger">*</span></label>
                         <input type="text" class="form-control @error('tempat') is-invalid @enderror"
                         id="tempat" name="tempat">
 
@@ -55,7 +63,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">Tanggal Lahir</label>
+                        <label for="jabatan">Tanggal Lahir<span class="text-danger">*</span></label>
                         <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
                         id="tglLahir" name="tglLahir">
 
@@ -66,7 +74,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">NIPY</label>
+                        <label for="jabatan">NIPY<span class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('nipy') is-invalid @enderror"
                         id="niyp" name="nipy">
 
@@ -78,9 +86,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jabatan">No Handphone</label>
+                        <label for="jabatan">No Handphone<span class="text-danger">*</span></label>
                         <input type="number" minlength="10" maxlength="12" class="form-control @error('noHp') is-invalid @enderror"
                         id="noHp" name="noHp">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                           Format: 6281xxxxx
+                        </small>
 
                         @error('noHp')
                             <span class="invalid-feedback" role="alert">
@@ -90,7 +101,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>File upload</label>
+                        <label>File upload<span class="text-danger">*</span></label>
                         <img class="img-preview img-fluid mb-3 col-sm-5 d-block">
                         <input class="form-control-file @error('foto') is-invalid @enderror"
                                type="file" name="foto" id="image" onchange="previewImage()">

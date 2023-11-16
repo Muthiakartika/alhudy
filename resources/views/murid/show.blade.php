@@ -5,11 +5,21 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{session('error')}}
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    @endif
+        @elseif ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
     <!-- Record DataTales Example -->
         <div class="card shadow mb-4">

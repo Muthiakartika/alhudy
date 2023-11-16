@@ -20,6 +20,6 @@ class Admin
         if (Auth::user()->role == "admin") {
             return $next($request);
         }
-        abort(403);
+        return back()->with('error',"Maaf anda tidak memiliki hak akses!");
     }
 }

@@ -6508,8 +6508,39 @@ button.bg-dark:focus {
   background-color: #fff !important;
 }
 
-.bg-transparent {
+/* .bg-transparent {
   background-color: transparent !important;
+} */
+
+
+
+.bg-transparent {
+    position: relative;
+    background-color: transparent !important;
+    /* Ganti URL dengan URL gambar yang ingin Anda gunakan */
+    background-image: url('../img/alhudy.JPG');
+    /* Sesuaikan propertinya sesuai kebutuhan Anda */
+    background-size: cover;
+    background-position: center;
+    height: 300px; /* Atur tinggi elemen sesuai kebutuhan */
+    padding: 20px;
+}
+
+.bg-transparent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 128, 0, 0.5); /* Warna hijau dengan tingkat kejernihan 0.5 (50%) */
+}
+
+.bg-transparent img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%); /* Efek greyscale pada foto (100% mengubah ke greyscale sepenuhnya) */
 }
 
 .border {
@@ -10881,9 +10912,12 @@ a:focus {
 }
 
 .bg-register-image {
-  background: url("../img/vaccination.png");
+  background: url("../img/hudy-bg.png");
   background-position: center;
   background-size: cover;
+ 
+  align-items: center;
+  justify-content: center;
 }
 
 .bg-password-image {

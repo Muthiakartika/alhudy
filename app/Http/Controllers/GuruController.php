@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class GuruController extends Controller
 {
@@ -15,9 +16,14 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $dataGuru = Guru::all();
-        return view('guru.index', compact('dataGuru'))
-        ->with('i', (request()->input('page', 1)-1)*5);
+        if(FacadesAuth::user()->role == 'admin'){
+            $dataGuru = Guru::all();
+            return view('guru.index', compact('dataGuru'))
+            ->with('i', (request()->input('page', 1)-1)*5);
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -38,34 +44,38 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        // memvalidasi inputan
-        $request->validate([
-            'nama' => 'required',
-            'jabatan' => 'required',
-            'tempat' => 'required',
-            'tglLahir' => 'required',
-            'nipy' => 'required',
-            'noHp' => 'required',
-            'foto' => 'required|image|file|max:2048'
-        ]);
+        if(FacadesAuth::user()->role == 'admin'){
+            // memvalidasi inputan
+            $request->validate([
+                'nama' => 'required',
+                'jabatan' => 'required',
+                'tempat' => 'required',
+                'tglLahir' => 'required',
+                'nipy' => 'required',
+                'noHp' => 'required',
+                'foto' => 'required|image|file'
+            ]);
 
-        //Validasi jika ada foto yang dimasukkan
-        if($request->file('foto')){
-            $request->foto = $request->file('foto')->store('galeri_foto');
+            //Validasi jika ada foto yang dimasukkan
+            if($request->file('foto')){
+                $request->foto = $request->file('foto')->store('galeri_foto');
+            }
+
+            Guru::create([
+                'nama' => $request->nama,
+                'jabatan' => $request->jabatan,
+                'tempat' => $request->tempat,
+                'tglLahir' => $request->tglLahir,
+                'nipy' => $request->nipy,
+                'noHp' => $request->noHp,
+                'foto' => $request->foto,
+            ]);
+
+            return redirect()->route('guru.index')
+            ->with('success','Data guru berhasil ditambahkan');
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
         }
-
-        Guru::create([
-            'nama' => $request->nama,
-            'jabatan' => $request->jabatan,
-            'tempat' => $request->tempat,
-            'tglLahir' => $request->tglLahir,
-            'nipy' => $request->nipy,
-            'noHp' => $request->noHp,
-            'foto' => $request->foto,
-        ]);
-
-        return redirect()->route('guru.index')
-        ->with('success','Data guru berhasil ditambahkan');
     }
 
     /**
@@ -76,8 +86,13 @@ class GuruController extends Controller
      */
     public function show($id)
     {
-        $guru = Guru::findOrFail($id);
-        return view('guru.show', compact('guru'));
+        if(FacadesAuth::user()->role == 'admin'){
+            $guru = Guru::findOrFail($id);
+            return view('guru.show', compact('guru'));
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -88,7 +103,11 @@ class GuruController extends Controller
      */
     public function edit(Guru $guru)
     {
-        return view('guru.edit', compact('guru'));
+        if(FacadesAuth::user()->role == 'admin'){
+            return view('guru.edit', compact('guru'));
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
@@ -100,41 +119,48 @@ class GuruController extends Controller
      */
     public function update(Request $request, Guru $guru)
     {
-        // memvalidasi inputan
-        $request->validate([
-            'nama' => 'required',
-            'jabatan' => 'required',
-            'tempat' => 'required',
-            'tglLahir' => 'required',
-            'nipy' => 'required',
-            'noHp' => 'required',
-            'foto' => 'required|image|file|max:2048'
-        ]);
+        if(FacadesAuth::user()->role == 'admin'){
+            // memvalidasi inputan
+            $request->validate([
+                'nama' => '',
+                'jabatan' => '',
+                'tempat' => '',
+                'tglLahir' => '',
+                'nipy' => '',
+                'noHp' => '',
+                'foto' => ''
+            ]);
 
-        //Validasi jika ada foto yang dimasukkan
-        if($request->file('foto'))
-        {
-            // Menghapus foto yang lama di storage
-            if($request->oldImage)
-            {
-                Storage::delete('galeri_foto/' .$request->oldImage);
+            // Validasi jika ada foto yang dimasukkan
+            if ($request->hasFile('foto')) {
+                // dd('Old image value: ' . $request->foto);
+                // Menghapus foto yang lama di storage
+                if ($request->oldImage && Storage::exists($request->oldImage)) {
+                    Storage::delete($request->oldImage);
+                }
+                // Simpan foto baru
+                $request->foto = $request->file('foto')->store('galeri_foto');
+            } else {
+                // Jika tidak ada perubahan terhadap foto
+                $request->merge(['foto' => $request->oldImage]);
             }
-            $request->foto= $request->file('foto')->store('galeri_foto');
+
+            $guru->update([
+                'nama' => $request->nama,
+                'jabatan' => $request->jabatan,
+                'tempat' => $request->tempat,
+                'tglLahir' => $request->tglLahir,
+                'nipy' => $request->nipy,
+                'noHp' => $request->noHp,
+                'foto' => $request->foto,
+            ]);
+
+            return redirect()->route('guru.index')
+            ->with('success','Data guru berhasil diupdate');
+
+        } else{
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
         }
-
-
-        $guru->update([
-            'nama' => $request->nama,
-            'jabatan' => $request->jabatan,
-            'tempat' => $request->tempat,
-            'tglLahir' => $request->tglLahir,
-            'nipy' => $request->nipy,
-            'noHp' => $request->noHp,
-            'foto' => $request->foto,
-        ]);
-
-        return redirect()->route('guru.index')
-        ->with('success','Data guru berhasil diupdate');
     }
 
     /**
@@ -143,18 +169,22 @@ class GuruController extends Controller
      * @param  \App\Models\Guru  $guru
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Guru $guru)
+    public function destroy(Request $request, Guru $guru)
     {
-        // Menghapus foto yang lama di storage
-        if($guru->foto)
-        {
-            Storage::delete('galeri_foto/' .$guru->foto);
-        }
+        if (FacadesAuth::user()->role == 'admin') {
+            // Menghapus foto yang lama di storage
+            if ($guru->foto) {
+                // dd('nilai:' .$guru->foto);
+                Storage::delete($guru->foto);
+            }
 
-        // Menghapus data
-        $guru->delete();
-        return redirect()->route('guru.index')
-        ->with('success','Data guru berhasil dihapus');
+            // Menghapus data
+            $guru->delete();
+
+            return redirect()->route('guru.index')->with('success', 'Data guru berhasil dihapus');
+        } else {
+            return back()->with('error', 'Maaf Anda Tidak Memiliki Hak Akses!');
+        }
     }
 
     /**
